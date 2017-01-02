@@ -26,6 +26,7 @@ public class Login extends Application {
         stage.setScene(scene);
         stage.setTitle("Login Cotizacion");
         stage.show();
+        stage.setResizable(false);
     }
 
     /**

@@ -43,6 +43,7 @@ public class ControladorLogin implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Acerca de");
         stage.show();
+        stage.setResizable(false);
     }
 
     @FXML

@@ -17,12 +17,12 @@
       </Label>
       <ImageView fitHeight="157.0" fitWidth="77.0" layoutX="21.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/jesus.ramos/Pictures/app/java.png" />
+            <Image url="/imagenes/java.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="91.0" fitWidth="266.0" layoutX="195.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="file:/C:/Users/jesus.ramos/Pictures/app/MySQL.svg.png" />
+            <Image url="/imagenes/MySQL.svg.png" />
          </image>
       </ImageView>
       <Label layoutX="23.0" layoutY="301.0" text="Ingeniero Ramos Jesus">
