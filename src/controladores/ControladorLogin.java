@@ -6,16 +6,23 @@
 package controladores;
 
 import static com.sun.glass.ui.Cursor.setVisible;
+import conexionBD.ConectarConfig;
+import cotizacion.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -26,12 +33,54 @@ public class ControladorLogin implements Initializable {
 
     @FXML
     private ProgressIndicator progres1;
-
+    @FXML
+    private PasswordField pass;
+    @FXML
+    private TextField user;
+    @FXML
+    private Usuario u = null;
+    @FXML
+    private Label validaUser;
+    @FXML
+    private Label validaPass;
+    
     @FXML
     private void ingresarSistema(ActionEvent event) {
         System.out.println("Logueando!");
         progres1.setVisible(true);
-        
+        u = ConectarConfig.login(user.getText(), pass.getText());
+        System.out.println(u.toString());
+        if (u.getValidoUser() && u.getValidoPass()) {
+            System.out.println("Logueo Satisfactorio!!");
+            validaUser.setVisible(false);
+            validaPass.setVisible(false);
+            try {
+                long inicio3 = System.currentTimeMillis();
+                Thread.sleep(3000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+//            progres1.setVisible(false);
+            try {
+//                cerrarPrograma(event);
+                inicio(event);
+            } catch (Exception ex) {
+                Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            if (!u.getValidoUser()) {
+                System.out.println("El usuario no coincide");
+                validaUser.setVisible(true);
+            } else {
+                validaUser.setVisible(false);
+            }
+            if (!u.getValidoPass()) {
+                System.out.println("El password no coincide");
+                validaPass.setVisible(true);
+            } else {
+                validaPass.setVisible(false);
+            }
+        }
     }
 
     @FXML
@@ -46,6 +95,19 @@ public class ControladorLogin implements Initializable {
         stage.show();
         stage.setResizable(false);
     }
+    
+    @FXML
+    private void inicio(ActionEvent event) throws IOException {
+        System.out.println("Abriendo la ventana de inicio...!");
+        Parent root = FXMLLoader.load(getClass().getResource("/vistas/Inicio.fxml"));
+        Stage stage = new Stage();
+        Scene scene;
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Inicio");
+        stage.show();
+        stage.setResizable(false);
+    }
 
     @FXML
     private void cerrarPrograma(ActionEvent event) throws Exception {
@@ -53,6 +115,16 @@ public class ControladorLogin implements Initializable {
         setVisible(false);
         System.out.println("Bye bye...");
         System.exit(0);
+    }
+
+    @FXML
+    private void limpiar(ActionEvent event) throws Exception {
+        System.out.println("Limpiando campos");
+        pass.setText("");
+        validaPass.setVisible(false);
+        user.setText("");
+        validaUser.setVisible(false);
+        progres1.setVisible(false);
     }
 
     @Override
