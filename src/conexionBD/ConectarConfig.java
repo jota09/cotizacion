@@ -55,5 +55,9 @@ public class ConectarConfig {
             throw new RuntimeException("Error verificando datos", ex);
         }
     }
+    
+    public static Usuario usuarioLogueado(){
+        return u;
+    }
 
 }
