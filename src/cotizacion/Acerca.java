@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  *
  * @author Jesus.Ramos
  */
-public class Acerca extends Application {
+    public class Acerca extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {

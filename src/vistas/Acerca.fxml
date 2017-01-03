@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="344.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.AcercaController">
    <children>
-      <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="118.0" layoutY="106.0" lineSpacing="1.0" prefHeight="133.0" prefWidth="193.0" text="Software desarrollado como prueba de app de escritorio. Base de datos MySql y Lenguaje Java" wrapText="true">
+      <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="118.0" layoutY="106.0" lineSpacing="1.0" prefHeight="133.0" prefWidth="193.0" text="Software desarrollado para el cálculo de disponibilidad de dinero para inversión. Base de datos MySql y Lenguaje Java" wrapText="true">
          <effect>
             <Glow />
          </effect>

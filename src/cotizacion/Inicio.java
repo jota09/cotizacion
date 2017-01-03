@@ -19,14 +19,14 @@ import javafx.stage.Stage;
 public class Inicio extends Application {
     
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage secondaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/vistas/Inicio.fxml"));
         
         Scene scene;
         scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Inicio");
-        stage.show();
+        secondaryStage.setScene(scene);
+        secondaryStage.setTitle("Inicio");
+        secondaryStage.show();
     }
 
     /**

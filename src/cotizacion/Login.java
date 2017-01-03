@@ -18,15 +18,19 @@ import javafx.stage.Stage;
 public class Login extends Application {
     
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/vistas/Login.fxml"));
-        
         Scene scene;
         scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Login Cotizacion");
-        stage.show();
-        stage.setResizable(false);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Login Cotizacion");
+        primaryStage.show();
+        primaryStage.setResizable(false);
+    }
+    
+    public void close(){
+        Stage stage = new Stage();
+        stage.close();
     }
 
     /**

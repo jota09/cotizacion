@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="334.0" prefWidth="428.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.ControladorLogin">
     <children>
-        <Button fx:id="button" layoutX="138.0" layoutY="269.0" onAction="#ingresarSistema" text="Acceder" />
+        <Button fx:id="buttonLogin" layoutX="138.0" layoutY="269.0" onAction="#ingresarSistema" text="Acceder" />
         <Label fx:id="label" layoutX="44.0" layoutY="157.0" minHeight="16" minWidth="69" text="Usuario:" />
       <Label fx:id="label1" layoutX="44.0" layoutY="211.0" minHeight="16" minWidth="69" text="Contraseña:" />
       <PasswordField fx:id="pass" layoutX="138.0" layoutY="206.0" />

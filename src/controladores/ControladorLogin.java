@@ -5,7 +5,6 @@
  */
 package controladores;
 
-import static com.sun.glass.ui.Cursor.setVisible;
 import conexionBD.ConectarConfig;
 import cotizacion.Usuario;
 import java.io.IOException;
@@ -19,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
@@ -43,6 +43,8 @@ public class ControladorLogin implements Initializable {
     private Label validaUser;
     @FXML
     private Label validaPass;
+    @FXML
+    private Button buttonLogin;
     
     @FXML
     private void ingresarSistema(ActionEvent event) {
@@ -54,15 +56,15 @@ public class ControladorLogin implements Initializable {
             System.out.println("Logueo Satisfactorio!!");
             validaUser.setVisible(false);
             validaPass.setVisible(false);
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            try {
+//                Thread.sleep(3000);
+//            } catch (InterruptedException ex) {
+//                Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+//            }
 //            progres1.setVisible(false);
             try {
-//                cerrarPrograma(event);
-                inicio(event);
+                cerrarPrograma();
+                inicio();
             } catch (Exception ex) {
                 Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -70,12 +72,14 @@ public class ControladorLogin implements Initializable {
             if (!u.getValidoUser()) {
                 System.out.println("El usuario no coincide");
                 validaUser.setVisible(true);
+                progres1.setVisible(false);
             } else {
                 validaUser.setVisible(false);
             }
             if (!u.getValidoPass()) {
                 System.out.println("El password no coincide");
                 validaPass.setVisible(true);
+                progres1.setVisible(false);
             } else {
                 validaPass.setVisible(false);
             }
@@ -96,7 +100,7 @@ public class ControladorLogin implements Initializable {
     }
     
     @FXML
-    private void inicio(ActionEvent event) throws IOException {
+    private void inicio() throws IOException {
         System.out.println("Abriendo la ventana de inicio...!");
         Parent root = FXMLLoader.load(getClass().getResource("/vistas/Inicio.fxml"));
         Stage stage = new Stage();
@@ -109,15 +113,13 @@ public class ControladorLogin implements Initializable {
     }
 
     @FXML
-    private void cerrarPrograma(ActionEvent event) throws Exception {
-        System.out.println("oculto...");
-        setVisible(false);
-        System.out.println("Bye bye...");
-        System.exit(0);
+    private void cerrarPrograma() throws Exception {
+        Stage stage = (Stage) buttonLogin.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
-    private void limpiar(ActionEvent event) throws Exception {
+    private void limpiar() throws Exception {
         System.out.println("Limpiando campos");
         pass.setText("");
         validaPass.setVisible(false);
