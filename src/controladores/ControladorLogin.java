@@ -55,7 +55,6 @@ public class ControladorLogin implements Initializable {
             validaUser.setVisible(false);
             validaPass.setVisible(false);
             try {
-                long inicio3 = System.currentTimeMillis();
                 Thread.sleep(3000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
