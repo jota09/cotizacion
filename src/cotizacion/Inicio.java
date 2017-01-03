@@ -6,6 +6,7 @@
 package cotizacion;
 
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,18 +16,17 @@ import javafx.stage.Stage;
  *
  * @author Jesus.Ramos
  */
-public class Login extends Application {
+public class Inicio extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/vistas/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vistas/Inicio.fxml"));
         
         Scene scene;
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Login Cotizacion");
+        stage.setTitle("Inicio");
         stage.show();
-        stage.setResizable(false);
     }
 
     /**

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -13,8 +14,8 @@
         <Button fx:id="button" layoutX="138.0" layoutY="269.0" onAction="#ingresarSistema" text="Acceder" />
         <Label fx:id="label" layoutX="44.0" layoutY="157.0" minHeight="16" minWidth="69" text="Usuario:" />
       <Label fx:id="label1" layoutX="44.0" layoutY="211.0" minHeight="16" minWidth="69" text="Contraseña:" />
-      <PasswordField layoutX="138.0" layoutY="206.0" />
-      <TextField layoutX="138.0" layoutY="152.0" />
+      <PasswordField fx:id="pass" layoutX="138.0" layoutY="206.0" />
+      <TextField fx:id="user" layoutX="138.0" layoutY="152.0" />
       <MenuBar prefHeight="37.0" prefWidth="437.0">
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
@@ -24,7 +25,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Editar">
             <items>
-              <MenuItem mnemonicParsing="false" text="Borrar" />
+              <MenuItem mnemonicParsing="false" onAction="#limpiar"  text="Borrar" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">
@@ -50,8 +51,18 @@
       </ImageView>
       <ImageView fitHeight="72.0" fitWidth="150.0" layoutX="277.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="/imagenes/MySQL.svg.png"/>
+            <Image url="/imagenes/MySQL.svg.png" />
          </image>
       </ImageView>
+      <Label fx:id="validaUser" layoutX="138.0" layoutY="183.0" text="Usuario incorrecto" textFill="RED" visible="false">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="validaPass" layoutX="138.0" layoutY="236.0" text="Contraseña incorrecta" textFill="RED" visible="false">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
