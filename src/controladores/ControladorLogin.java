@@ -31,6 +31,7 @@ public class ControladorLogin implements Initializable {
     private void ingresarSistema(ActionEvent event) {
         System.out.println("Logueando!");
         progres1.setVisible(true);
+        
     }
 
     @FXML
