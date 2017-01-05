@@ -9,22 +9,97 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controladores.InicioController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.InicioController">
     <children>
-      <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="78.0" layoutY="24.0" lineSpacing="1.0" prefHeight="68.0" prefWidth="193.0" text="Se ha logueado satisfactoriamente Sr@:" wrapText="true">
+      <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="5.0" layoutX="6.0" layoutY="30.0" lineSpacing="1.0" prefHeight="32.0" prefWidth="89.0" text="Bienvenido:" wrapText="true">
          <effect>
             <Glow />
          </effect>
       </Label>
-      <Label fx:id="nombreUsuario" layoutX="78.0" layoutY="92.0" prefHeight="75.0" prefWidth="326.0">
+      <Label fx:id="nombreUsuario" layoutX="95.0" layoutY="30.0" prefHeight="32.0" prefWidth="273.0">
          <font>
-            <Font name="Arial" size="48.0" />
+            <Font name="Arial" size="17.0" />
          </font>
       </Label>
-      <ImageView fitHeight="203.0" fitWidth="247.0" layoutX="339.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="26.0" fitWidth="141.0" layoutX="618.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="/imagenes/Check-mark.png" />
          </image>
       </ImageView>
+      <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="661.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Archivo">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Cerrar" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Editar">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Configuracion" />
+                  <MenuItem mnemonicParsing="false" text="Borrar" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Ayuda">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Acerca de" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label fx:id="nombreUsuario1" layoutX="540.0" layoutY="30.0" prefHeight="32.0" prefWidth="78.0" text="Estatus: ">
+         <font>
+            <Font name="Arial" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="279.0" layoutY="274.0" prefHeight="62.0" prefWidth="314.0" text="Cantidad$$$">
+         <font>
+            <Font name="Arial" size="40.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="46.0" fitWidth="36.0" layoutX="119.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/imagenes/Check-mark.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="78.0" layoutY="126.0" prefHeight="46.0" prefWidth="109.0" text="Ingresos:">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="211.0" layoutY="138.0" prefHeight="23.0" prefWidth="89.0" text="\$$$$$$$">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="78.0" layoutY="187.0" prefHeight="27.0" prefWidth="109.0" text="Egresos:">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="211.0" layoutY="189.0" prefHeight="23.0" prefWidth="89.0" text="\$$$$$$$">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="378.0" layoutY="126.0" prefHeight="46.0" prefWidth="99.0" text="Mayor ingreso:">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="496.0" layoutY="138.0" prefHeight="23.0" prefWidth="132.0" text="Mayor ingreso">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="378.0" layoutY="178.0" prefHeight="46.0" prefWidth="99.0" text="Mayor egreso:">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="496.0" layoutY="189.0" prefHeight="23.0" prefWidth="132.0" text="Mayor egreso">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
