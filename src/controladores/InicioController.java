@@ -5,9 +5,11 @@
  */
 package controladores;
 
+import conexionBD.Conectar;
 import conexionBD.ConectarConfig;
 import cotizacion.Usuario;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,6 +29,8 @@ public class InicioController implements Initializable {
     private Usuario u = ConectarConfig.usuarioLogueado();
     @FXML
     private Label nombreUsuario;
+    @FXML
+    private Connection con = null;
     
     @FXML
     private void mostrarUser() throws Exception {
@@ -38,6 +42,7 @@ public class InicioController implements Initializable {
         System.out.println("Entro aqui");
         nombreUsuario.setText(u.getName());
         System.out.println(u.toString());
+        con = Conectar.getConnection();        
 
     }    
     

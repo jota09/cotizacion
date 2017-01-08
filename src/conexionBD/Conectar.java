@@ -23,13 +23,15 @@ public class Conectar {
             if (con == null) {
 // con esto determinamos cuando finalize el programa
                 Runtime.getRuntime().addShutdownHook(new MiShDwnHook());
-                ResourceBundle rb = ResourceBundle.getBundle("/configuracion/configjdbc");
+                ResourceBundle rb = ResourceBundle.getBundle("configuracion.configjdbc");
                 String driver = rb.getString("driver");
                 String url = rb.getString("url");
                 String pwd = rb.getString("pass");
                 String usr = rb.getString("user");
                 Class.forName(driver);
+                System.out.println("Se ha levantado los drivers satisfactoriamente");
                 con = DriverManager.getConnection(url, usr, pwd);
+                System.out.println("Se ha establecido la conexion  satisfactoriamente");
             }
             return con;
         } catch (ClassNotFoundException | SQLException ex) {
@@ -46,6 +48,7 @@ public class Conectar {
             try {
                 Connection con = Conectar.getConnection();
                 con.close();
+                System.out.println("Cerrando la conexion");
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
