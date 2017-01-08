@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -50,6 +51,8 @@ public class InicioController implements Initializable {
     private Label TmayorIngreso;
     @FXML
     private Label TmayorEgreso;
+    @FXML
+    private Image indicadorBalance;
     @FXML
     private Connection con = null;
     @FXML
@@ -80,6 +83,12 @@ public class InicioController implements Initializable {
         stage.setTitle("Acerca de");
         stage.show();
         stage.setResizable(false);
+    }
+    
+    @FXML
+    private void cerrarPrograma() throws Exception {
+        Stage stage = (Stage) nombreUsuario.getScene().getWindow();
+        stage.close();
     }
 
     @Override

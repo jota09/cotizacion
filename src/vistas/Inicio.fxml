@@ -30,7 +30,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
-              <MenuItem mnemonicParsing="false" text="Cerrar" />
+              <MenuItem mnemonicParsing="false" onAction="#cerrarPrograma" text="Cerrar" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Editar">
@@ -58,48 +58,64 @@
       </Label>
       <ImageView fitHeight="46.0" fitWidth="36.0" layoutX="119.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="/imagenes/Check-mark.png" />
+            <Image fx:id="indicadorBalance" url="/imagenes/Check-mark.png" />
          </image>
       </ImageView>
-      <Label layoutX="78.0" layoutY="126.0" prefHeight="46.0" prefWidth="109.0" text="Ingresos:" textFill="#1b02ff">
-         <font>
-            <Font name="Arial" size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="TtotalIngreso" layoutX="211.0" layoutY="138.0" prefHeight="23.0" prefWidth="89.0" text="\$$$$$$$" textFill="#1b02ff">
-         <font>
-            <Font name="Arial" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="78.0" layoutY="187.0" prefHeight="27.0" prefWidth="109.0" text="Egresos:" textFill="#ff2d07">
-         <font>
-            <Font name="Arial" size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="TtotalEgreso" layoutX="211.0" layoutY="189.0" prefHeight="23.0" prefWidth="89.0" text="\$$$$$$$" textFill="#ff2d07">
-         <font>
-            <Font name="Arial" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="378.0" layoutY="126.0" prefHeight="46.0" prefWidth="99.0" text="Mayor ingreso:" textFill="#1b02ff">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="TmayorIngreso" layoutX="496.0" layoutY="138.0" prefHeight="23.0" prefWidth="132.0" text="Mayor ingreso" textFill="#1b02ff">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="378.0" layoutY="178.0" prefHeight="46.0" prefWidth="99.0" text="Mayor egreso:" textFill="#ff2d07">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="TmayorEgreso" layoutX="496.0" layoutY="189.0" prefHeight="23.0" prefWidth="132.0" text="Mayor egreso" textFill="#ff2d07">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
+      <TitledPane layoutX="36.0" layoutY="75.0" prefHeight="193.0" prefWidth="273.0" text="Datos Generales">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="119.0" prefHeight="27.0" prefWidth="109.0" text="Egresos:" textFill="#ff2d07">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="TtotalEgreso" layoutX="117.0" layoutY="119.0" prefHeight="27.0" prefWidth="147.0" text="\$$$$$$$" textAlignment="CENTER" textFill="#ff2d07">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="25.0" prefHeight="46.0" prefWidth="109.0" text="Ingresos:" textFill="#1b02ff">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="TtotalIngreso" layoutX="117.0" layoutY="37.0" prefHeight="27.0" prefWidth="149.0" text="\$$$$$$$" textAlignment="CENTER" textFill="#1b02ff">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane layoutX="360.0" layoutY="75.0" prefHeight="193.0" prefWidth="287.0" text="Relevancia del mes">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="10.0" layoutY="109.0" prefHeight="46.0" prefWidth="99.0" text="Mayor egreso:" textFill="#ff2d07">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="TmayorEgreso" layoutX="108.0" layoutY="121.0" prefHeight="23.0" prefWidth="173.0" text="Mayor egreso" textFill="#ff2d07">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="29.0" prefHeight="46.0" prefWidth="99.0" text="Mayor ingreso:" textFill="#1b02ff">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="TmayorIngreso" layoutX="109.0" layoutY="41.0" prefHeight="23.0" prefWidth="172.0" text="Mayor ingreso" textFill="#1b02ff">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
    </children>
 </AnchorPane>
