@@ -33,6 +33,9 @@ public class Conectar {
                 con = DriverManager.getConnection(url, usr, pwd);
                 System.out.println("Se ha establecido la conexion  satisfactoriamente");
             }
+            else {
+                System.out.println("Ya existe una conexion a la base de datos");
+            }
             return con;
         } catch (ClassNotFoundException | SQLException ex) {
             throw new RuntimeException("Error al crear la conexion", ex);

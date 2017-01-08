@@ -41,7 +41,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">
             <items>
-              <MenuItem mnemonicParsing="false" text="Acerca de" />
+              <MenuItem id="sobreApp" mnemonicParsing="false" onAction="#acercaDe" text="Acerca de" />
             </items>
           </Menu>
         </menus>
@@ -51,7 +51,7 @@
             <Font name="Arial" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="279.0" layoutY="274.0" prefHeight="62.0" prefWidth="314.0" text="Cantidad$$$">
+      <Label fx:id="Ttotal" layoutX="279.0" layoutY="274.0" prefHeight="62.0" prefWidth="314.0" text="Cantidad$$$">
          <font>
             <Font name="Arial" size="40.0" />
          </font>
@@ -61,42 +61,42 @@
             <Image url="/imagenes/Check-mark.png" />
          </image>
       </ImageView>
-      <Label layoutX="78.0" layoutY="126.0" prefHeight="46.0" prefWidth="109.0" text="Ingresos:">
+      <Label layoutX="78.0" layoutY="126.0" prefHeight="46.0" prefWidth="109.0" text="Ingresos:" textFill="#1b02ff">
          <font>
             <Font name="Arial" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="211.0" layoutY="138.0" prefHeight="23.0" prefWidth="89.0" text="\$$$$$$$">
+      <Label fx:id="TtotalIngreso" layoutX="211.0" layoutY="138.0" prefHeight="23.0" prefWidth="89.0" text="\$$$$$$$" textFill="#1b02ff">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="78.0" layoutY="187.0" prefHeight="27.0" prefWidth="109.0" text="Egresos:">
+      <Label layoutX="78.0" layoutY="187.0" prefHeight="27.0" prefWidth="109.0" text="Egresos:" textFill="#ff2d07">
          <font>
             <Font name="Arial" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="211.0" layoutY="189.0" prefHeight="23.0" prefWidth="89.0" text="\$$$$$$$">
+      <Label fx:id="TtotalEgreso" layoutX="211.0" layoutY="189.0" prefHeight="23.0" prefWidth="89.0" text="\$$$$$$$" textFill="#ff2d07">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="378.0" layoutY="126.0" prefHeight="46.0" prefWidth="99.0" text="Mayor ingreso:">
+      <Label layoutX="378.0" layoutY="126.0" prefHeight="46.0" prefWidth="99.0" text="Mayor ingreso:" textFill="#1b02ff">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="496.0" layoutY="138.0" prefHeight="23.0" prefWidth="132.0" text="Mayor ingreso">
+      <Label fx:id="TmayorIngreso" layoutX="496.0" layoutY="138.0" prefHeight="23.0" prefWidth="132.0" text="Mayor ingreso" textFill="#1b02ff">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="378.0" layoutY="178.0" prefHeight="46.0" prefWidth="99.0" text="Mayor egreso:">
+      <Label layoutX="378.0" layoutY="178.0" prefHeight="46.0" prefWidth="99.0" text="Mayor egreso:" textFill="#ff2d07">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="496.0" layoutY="189.0" prefHeight="23.0" prefWidth="132.0" text="Mayor egreso">
+      <Label fx:id="TmayorEgreso" layoutX="496.0" layoutY="189.0" prefHeight="23.0" prefWidth="132.0" text="Mayor egreso" textFill="#ff2d07">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
