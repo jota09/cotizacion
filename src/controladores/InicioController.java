@@ -12,6 +12,7 @@ import dao.EgresoDAO;
 import dao.IngresoDAO;
 import dto.EgresoDTO;
 import dto.IngresoDTO;
+import facade.Facade;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -23,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -54,15 +56,15 @@ public class InicioController implements Initializable {
     @FXML
     private Image indicadorBalance;
     @FXML
+    private ComboBox idenIngreso;
+    @FXML
     private Connection con = null;
     @FXML
-    private IngresoDAO ingresos = new IngresoDAO();
+    private Facade facade = new Facade();
     @FXML
-    private ArrayList<IngresoDTO> colIngreso = ingresos.obtenerIngresosActivo();
+    private ArrayList<IngresoDTO> colIngreso = facade.obtenerIngresosActivo();
     @FXML
-    private EgresoDAO egresos = new EgresoDAO();
-    @FXML
-    private ArrayList<EgresoDTO> colEgreso = egresos.obtenerEgresosActivo();
+    private ArrayList<EgresoDTO> colEgreso = facade.obtenerEgresosActivo();
     @FXML
     private int totalEgreso = 0;
     @FXML

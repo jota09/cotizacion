@@ -5,21 +5,25 @@
  */
 package facade;
 
+import dao.EgresoDAO;
+import dao.IngresoDAO;
 import dto.IngresoDTO;
 import dto.EgresoDTO;
-import java.util.Collection;
+import java.util.ArrayList;
 
 /**
  *
  * @author Jesus
  */
 public class Facade {
-    public Collection<IngresoDTO> obtenerIngresosActivo(){
-        return null;
-        
+    
+    public ArrayList<IngresoDTO> obtenerIngresosActivo(){
+        IngresoDAO ingresoActivos = new IngresoDAO();
+        return ingresoActivos.obtenerIngresosActivo();
     }
-    public Collection<EgresoDTO> obtenerEgresosActivo(){
-        return null;
+    public ArrayList<EgresoDTO> obtenerEgresosActivo(){
+        EgresoDAO egresoActivos = new EgresoDAO();
+        return egresoActivos.obtenerEgresosActivo();
         
     }
     
