@@ -52,7 +52,6 @@ public class ControladorLogin implements Initializable {
         progres1.setVisible(true);
         u = ConectarConfig.login(user.getText(), pass.getText());
     
-        System.out.println(u.toString());
         if (u.getValidoUser() && u.getValidoPass()) {
             System.out.println("Logueo Satisfactorio!!");
             validaUser.setVisible(false);

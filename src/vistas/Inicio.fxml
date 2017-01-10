@@ -61,9 +61,9 @@
             <Image fx:id="indicadorBalance" url="/imagenes/Check-mark.png" />
          </image>
       </ImageView>
-      <Accordion layoutX="36.0" layoutY="75.0">
+      <Accordion layoutX="36.0" layoutY="88.0">
         <panes>
-            <TitledPane expanded="false" prefHeight="211.0" prefWidth="287.0" text="Datos Generales">
+            <TitledPane prefHeight="211.0" prefWidth="287.0" text="Datos Generales">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -90,6 +90,9 @@
                      </children>
                   </AnchorPane>
               </content>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </TitledPane>
             <TitledPane prefHeight="148.0" prefWidth="287.0" text="Relevancia del mes">
               <content>
@@ -118,18 +121,59 @@
                      </children>
                   </AnchorPane>
               </content>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </TitledPane>
-            <TitledPane expanded="false" prefHeight="136.0" prefWidth="273.0" text="Detalles">
+            <TitledPane prefHeight="136.0" prefWidth="273.0" text="Detalles">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Accordion layoutX="22.0" layoutY="30.0" />
                         <ComboBox fx:id="idenIngreso" layoutX="22.0" layoutY="30.0" prefHeight="25.0" prefWidth="157.0" promptText="Identificador Ingreso" visibleRowCount="20" />
+                        <ComboBox fx:id="idenEgreso" layoutX="22.0" layoutY="63.0" prefHeight="25.0" prefWidth="157.0" promptText="Identificador Egreso" visibleRowCount="20" />
                      </children>
                   </AnchorPane>
               </content>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </TitledPane>
         </panes>
       </Accordion>
+      <SplitPane dividerPositions="0.3333333333333333" layoutX="367.0" layoutY="209.0" prefHeight="170.0" prefWidth="245.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="29.0" layoutY="14.0" text="Id:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="4.0" layoutY="55.0" text="Identificador:" />
+                  <Label layoutX="7.0" layoutY="93.0" text="Descripcion:" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="159.0">
+               <children>
+                  <Label fx:id="labelId" alignment="TOP_LEFT" layoutX="12.0" layoutY="14.0" prefHeight="27.0" prefWidth="140.0" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelIden" alignment="TOP_LEFT" layoutX="12.0" layoutY="49.0" prefHeight="27.0" prefWidth="140.0" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelDes" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="10.0" layoutY="92.0" prefHeight="69.0" prefWidth="140.0" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>
