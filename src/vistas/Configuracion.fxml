@@ -46,14 +46,14 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <Button fx:id="button_crear_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Crear" visible="false" />
+                                                <Button fx:id="button_crear_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Crear" visible="false" onAction="#crearIdentificadorIngreso"/>
                                                 <Label fx:id="label_crear_IdentificadorIngreso" layoutX="47.0" layoutY="24.0" text="Crear identificador de ingresos" visible="false">
                                                     <font>
                                                         <Font name="Arial" size="24.0" />
                                                     </font>
                                                 </Label>
-                                                <Button fx:id="button_modificar_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Modificar" visible="false" />
-                                                <Button fx:id="button_eliminar_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Eliminar" visible="false" />
+                                                <Button fx:id="button_modificar_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Modificar" visible="false" onAction="#modificarIdentificadorIngreso"/>
+                                                <Button fx:id="button_eliminar_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Eliminar" visible="false" onAction="#eliminarIdentificadorIngreso"/>
                                             </children>
                                         </AnchorPane>
                                     </items>

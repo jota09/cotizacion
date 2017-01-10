@@ -20,7 +20,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -278,6 +277,28 @@ public class ConfiguracionController implements Initializable {
     
     @FXML
     private void cerrarPrograma() throws Exception {
+        Stage stage = (Stage) buscarIdentificadorIngreso.getScene().getWindow();
+        stage.close();
+    }
+    
+    @FXML
+    private void crearIdentificadorIngreso() throws Exception {
+        int crear = facade.insertarIdentificadoresIngresosActivo(input_identificador_IdentificadorIngreso.getText(), area_descripcion_IdentificadorIngreso.getText());
+        if(crear == 1){
+            input_identificador_IdentificadorIngreso.setText("");
+            area_descripcion_IdentificadorIngreso.setText("");
+            System.out.println("ha sido creado exitosamente");
+        }
+    }
+    
+    @FXML
+    private void modificarIdentificadorIngreso() throws Exception {
+        Stage stage = (Stage) buscarIdentificadorIngreso.getScene().getWindow();
+        stage.close();
+    }
+    
+    @FXML
+    private void eliminarIdentificadorIngreso() throws Exception {
         Stage stage = (Stage) buscarIdentificadorIngreso.getScene().getWindow();
         stage.close();
     }
