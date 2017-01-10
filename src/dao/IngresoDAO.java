@@ -29,7 +29,7 @@ public class IngresoDAO {
         con = Conectar.getConnection();
         String sql = "SELECT i.id, ii.identificador, i.nombre, i.valor, i.descripcion, i.fecha_inicio, i.fecha_fin, i.activo, i.eliminado "
                 + "FROM ingreso AS i "
-                + "JOIN identificador_ingreso AS ii "
+                + "JOIN identificador_ingreso AS ii ON i.identificador = ii.id "
                 + "WHERE i.activo = 1 AND i.eliminado = 0 AND ii.activo = 1 AND ii.eliminado = 0 "
                 + "ORDER BY i.valor DESC";
         try {

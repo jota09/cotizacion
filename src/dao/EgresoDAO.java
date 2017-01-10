@@ -28,7 +28,7 @@ public class EgresoDAO {
         con = Conectar.getConnection();
         String sql = "SELECT e.id, ie.identificador, e.nombre, e.valor, e.descripcion, e.fecha_inicio, e.fecha_fin, e.activo, e.eliminado "
                 + "FROM egreso AS e "
-                + "JOIN identificador_egreso AS ie "
+                + "JOIN identificador_egreso AS ie ON e.identificador = ie.id "
                 + "WHERE e.activo = 1 AND e.eliminado = 0 AND ie.activo = 1 AND ie.eliminado = 0 "
                 + "ORDER BY e.valor DESC";
         try {

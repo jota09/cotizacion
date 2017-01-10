@@ -8,8 +8,6 @@ package controladores;
 import conexionBD.Conectar;
 import conexionBD.ConectarConfig;
 import cotizacion.Usuario;
-import dao.EgresoDAO;
-import dao.IngresoDAO;
 import dto.EgresoDTO;
 import dto.IdentificacionEgresoDTO;
 import dto.IdentificacionIngresoDTO;
@@ -32,6 +30,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import utilitaria.FormatearDecimales;
 
 /**
  * FXML Controller class
@@ -83,7 +82,7 @@ public class InicioController implements Initializable {
     private int totalEgreso = 0;
     @FXML
     private int totalIngreso = 0;
-
+    
     @FXML
     private void mostrarUser() throws Exception {
     }
@@ -114,11 +113,9 @@ public class InicioController implements Initializable {
         con = Conectar.getConnection();
         for (IngresoDTO dto : colIngreso) {
             totalIngreso += dto.getValor();
-            System.out.println(dto);
         }
         for (EgresoDTO dto : colEgreso) {
             totalEgreso += dto.getValor();
-            System.out.println(dto);
         }
         if (totalIngreso > 0) {
             TtotalIngreso.setText(totalIngreso + "$");
@@ -131,9 +128,9 @@ public class InicioController implements Initializable {
             TtotalEgreso.setText("0$");
         }
         if ((totalIngreso - totalEgreso) >= 0) {
-            Ttotal.setText((totalIngreso - totalEgreso) + "$");
+            Ttotal.setText(FormatearDecimales.darFormato((totalIngreso - totalEgreso)) + "$");
         } else {
-            Ttotal.setText("-" + (totalEgreso - totalIngreso) + "$");
+            Ttotal.setText("-" + FormatearDecimales.darFormato((totalIngreso - totalEgreso)) + "$");
         }
         if (colIngreso.size() > 0) {
             IngresoDTO dto = colIngreso.get(0);
@@ -157,9 +154,6 @@ public class InicioController implements Initializable {
         idenIngreso.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue ov, String t, String t1) {
-                System.out.println(ov);
-                System.out.println(t);
-                System.out.println(t1);
                 for (IdentificacionIngresoDTO dto : colIdentificadorIngreso) {
                     if (dto.getIdentificador().equals(t1)) {
                         String id = "" + dto.getId() + "";
@@ -179,9 +173,6 @@ public class InicioController implements Initializable {
         idenEgreso.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue ov, String t, String t1) {
-                System.out.println(ov);
-                System.out.println(t);
-                System.out.println(t1);
                 for (IdentificacionEgresoDTO dto : colIdentificadorEgreso) {
                     if (dto.getIdentificador().equals(t1)) {
                         String id = "" + dto.getId() + "";
