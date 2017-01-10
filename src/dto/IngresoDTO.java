@@ -6,6 +6,7 @@
 package dto;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -21,6 +22,7 @@ public class IngresoDTO {
     private Date fecha_fin;
     private boolean activo;
     private boolean eliminado;
+    DecimalFormat formateador = new DecimalFormat("###,###.##");
     
     public IngresoDTO(){
         id = 0;
@@ -48,7 +50,7 @@ public class IngresoDTO {
     
     @Override
     public String toString(){
-        return nombre+"(" +identificador+") "+valor+"$";
+        return nombre+"(" +identificador+") "+formateador.format(valor)+"$";
     }
     
     public int getId(){

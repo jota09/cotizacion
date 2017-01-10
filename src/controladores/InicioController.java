@@ -16,6 +16,7 @@ import facade.Facade;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -29,8 +30,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
-import utilitaria.FormatearDecimales;
 
 /**
  * FXML Controller class
@@ -57,8 +58,6 @@ public class InicioController implements Initializable {
     @FXML
     private Label TmayorEgreso;
     @FXML
-    private Label labelId;
-    @FXML
     private Label labelIden;
     @FXML
     private Label labelDes;
@@ -66,6 +65,8 @@ public class InicioController implements Initializable {
     private ComboBox idenIngreso;
     @FXML
     private ComboBox idenEgreso;
+    @FXML
+    private TitledPane panel1, panel2, panel3;
     @FXML
     private Connection con = null;
     @FXML
@@ -82,7 +83,9 @@ public class InicioController implements Initializable {
     private int totalEgreso = 0;
     @FXML
     private int totalIngreso = 0;
-    
+    @FXML
+    DecimalFormat formateador = new DecimalFormat("###,###.##");
+
     @FXML
     private void mostrarUser() throws Exception {
     }
@@ -98,6 +101,34 @@ public class InicioController implements Initializable {
         stage.setTitle("Acerca de");
         stage.show();
         stage.setResizable(false);
+    }
+
+    @FXML
+    private void configuracion(ActionEvent event) throws IOException {
+        System.out.println("Abriendo otra ventana con las configuraciones...!");
+        Parent root = FXMLLoader.load(getClass().getResource("/vistas/Configuracion.fxml"));
+        Stage stage = new Stage();
+        Scene scene;
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Configuracion");
+        stage.show();
+        stage.setResizable(false);
+    }
+
+    @FXML
+    private void borrado(ActionEvent event) throws IOException {
+        System.out.println("Limpiando la ventana de inicio...!");
+        idenIngreso.getSelectionModel().clearSelection();
+        idenIngreso.setValue(null);
+        idenEgreso.getSelectionModel().clearSelection();
+        idenEgreso.setValue(null);
+        panel1.setExpanded(false);
+        panel2.setExpanded(false);
+        panel3.setExpanded(false);
+        labelIden.setText("");
+        labelDes.setText("");
+
     }
 
     @FXML
@@ -118,19 +149,19 @@ public class InicioController implements Initializable {
             totalEgreso += dto.getValor();
         }
         if (totalIngreso > 0) {
-            TtotalIngreso.setText(totalIngreso + "$");
+            TtotalIngreso.setText(formateador.format(totalIngreso) + "$");
         } else {
             TtotalIngreso.setText("0$");
         }
         if (totalEgreso > 0) {
-            TtotalEgreso.setText(totalEgreso + "$");
+            TtotalEgreso.setText(formateador.format(totalEgreso) + "$");
         } else {
             TtotalEgreso.setText("0$");
         }
         if ((totalIngreso - totalEgreso) >= 0) {
-            Ttotal.setText(FormatearDecimales.darFormato((totalIngreso - totalEgreso)) + "$");
+            Ttotal.setText(formateador.format(totalIngreso - totalEgreso) + "$");
         } else {
-            Ttotal.setText("-" + FormatearDecimales.darFormato((totalIngreso - totalEgreso)) + "$");
+            Ttotal.setText("-" + formateador.format(totalIngreso - totalEgreso) + "$");
         }
         if (colIngreso.size() > 0) {
             IngresoDTO dto = colIngreso.get(0);
@@ -157,8 +188,6 @@ public class InicioController implements Initializable {
                 for (IdentificacionIngresoDTO dto : colIdentificadorIngreso) {
                     if (dto.getIdentificador().equals(t1)) {
                         String id = "" + dto.getId() + "";
-                        labelId.setText(id);
-                        labelId.setAlignment(Pos.CENTER);
                         labelIden.setText(dto.getIdentificador());
                         labelIden.setAlignment(Pos.CENTER);
                         labelDes.setText(dto.getDescripcion());
@@ -176,8 +205,6 @@ public class InicioController implements Initializable {
                 for (IdentificacionEgresoDTO dto : colIdentificadorEgreso) {
                     if (dto.getIdentificador().equals(t1)) {
                         String id = "" + dto.getId() + "";
-                        labelId.setText(id);
-                        labelId.setAlignment(Pos.CENTER);
                         labelIden.setText(dto.getIdentificador());
                         labelIden.setAlignment(Pos.CENTER);
                         labelDes.setText(dto.getDescripcion());
