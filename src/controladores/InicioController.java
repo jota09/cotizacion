@@ -115,6 +115,30 @@ public class InicioController implements Initializable {
         stage.show();
         stage.setResizable(false);
     }
+    @FXML
+    private void configuracionIngreso(ActionEvent event) throws IOException {
+        System.out.println("Abriendo otra ventana con las configuraciones de ingreso...!");
+        Parent root = FXMLLoader.load(getClass().getResource("/vistas/ConfiguracionIngreso.fxml"));
+        Stage stage = new Stage();
+        Scene scene;
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("INGRESOS");
+        stage.show();
+        stage.setResizable(false);
+    }
+    @FXML
+    private void configuracionEgreso(ActionEvent event) throws IOException {
+        System.out.println("Abriendo otra ventana con las configuraciones de egreso...!");
+        Parent root = FXMLLoader.load(getClass().getResource("/vistas/ConfiguracionEgreso.fxml"));
+        Stage stage = new Stage();
+        Scene scene;
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("EGRESOS");
+        stage.show();
+        stage.setResizable(false);
+    }
 
     @FXML
     private void actualizar(ActionEvent event) throws IOException {
