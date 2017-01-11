@@ -58,4 +58,22 @@ public class Facade {
         return identificadoresIngresoActivos.eliminarIdentificadoresIngresosActivo(id);
 
     }
+    
+    public int insertarIdentificadoresEgresosActivo(String identificador, String descripcion) {
+        IdentificacionEgresoDAO identificadoresEgresoActivos = new IdentificacionEgresoDAO();
+        return identificadoresEgresoActivos.insertarIdentificadoresEgresosActivo(identificador, descripcion);
+
+    }
+    
+    public int modificarIdentificadoresEgresosActivo(int id, String identificador, String descripcion) {
+        IdentificacionEgresoDAO identificadoresEgresoActivos = new IdentificacionEgresoDAO();
+        return identificadoresEgresoActivos.modificarIdentificadoresEgresosActivo(id, identificador, descripcion);
+
+    }
+    
+    public int eliminarIdentificadoresEgresosActivo(int id) {
+        IdentificacionEgresoDAO identificadoresEgresoActivos = new IdentificacionEgresoDAO();
+        return identificadoresEgresoActivos.eliminarIdentificadoresEgresosActivo(id);
+
+    }
 }

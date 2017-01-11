@@ -66,6 +66,8 @@ public class ConfiguracionController implements Initializable {
     private ArrayList<IdentificacionIngresoDTO> colIdentificadorIngreso = facade.obtenerIdentificacionIngresosActivo();
     @FXML
     private ArrayList<IdentificacionEgresoDTO> colIdentificadorEgreso = facade.obtenerIdentificacionEgresosActivo();
+    @FXML
+    private int id_facade;
 
     /**
      * Initializes the controller class.
@@ -121,6 +123,7 @@ public class ConfiguracionController implements Initializable {
                         input_identificador_IdentificadorIngreso.setDisable(true);
                         area_descripcion_IdentificadorIngreso.setVisible(true);
                         area_descripcion_IdentificadorIngreso.setDisable(true);
+                        id_facade = dto.getId();
                         input_identificador_IdentificadorIngreso.setText(dto.getIdentificador());
                         area_descripcion_IdentificadorIngreso.setText(dto.getDescripcion());
                     }
@@ -164,6 +167,7 @@ public class ConfiguracionController implements Initializable {
                         label_identificador_IdentificadorIngreso.setVisible(true);
                         input_identificador_IdentificadorIngreso.setVisible(true);
                         area_descripcion_IdentificadorIngreso.setVisible(true);
+                        id_facade = dto.getId();
                         input_identificador_IdentificadorIngreso.setText(dto.getIdentificador());
                         area_descripcion_IdentificadorIngreso.setText(dto.getDescripcion());
 
@@ -172,6 +176,7 @@ public class ConfiguracionController implements Initializable {
             }
         });
     }
+
     @FXML
     private void formularioCrearIdentificadorEgreso(ActionEvent event) throws IOException {
         System.out.println("Mostrar formulario para crear un identificador de egresos...!");
@@ -223,6 +228,7 @@ public class ConfiguracionController implements Initializable {
                         input_identificador_IdentificadorEgreso.setDisable(true);
                         area_descripcion_IdentificadorEgreso.setVisible(true);
                         area_descripcion_IdentificadorEgreso.setDisable(true);
+                        id_facade = dto.getId();
                         input_identificador_IdentificadorEgreso.setText(dto.getIdentificador());
                         area_descripcion_IdentificadorEgreso.setText(dto.getDescripcion());
                     }
@@ -266,6 +272,7 @@ public class ConfiguracionController implements Initializable {
                         label_identificador_IdentificadorEgreso.setVisible(true);
                         input_identificador_IdentificadorEgreso.setVisible(true);
                         area_descripcion_IdentificadorEgreso.setVisible(true);
+                        id_facade = dto.getId();
                         input_identificador_IdentificadorEgreso.setText(dto.getIdentificador());
                         area_descripcion_IdentificadorEgreso.setText(dto.getDescripcion());
 
@@ -274,35 +281,263 @@ public class ConfiguracionController implements Initializable {
             }
         });
     }
-    
+
     @FXML
     private void cerrarPrograma() throws Exception {
         Stage stage = (Stage) buscarIdentificadorIngreso.getScene().getWindow();
         stage.close();
     }
-    
+
     @FXML
     private void crearIdentificadorIngreso() throws Exception {
         int crear = facade.insertarIdentificadoresIngresosActivo(input_identificador_IdentificadorIngreso.getText(), area_descripcion_IdentificadorIngreso.getText());
-        if(crear == 1){
+        if (crear == 1) {
             input_identificador_IdentificadorIngreso.setText("");
             area_descripcion_IdentificadorIngreso.setText("");
-            System.out.println("ha sido creado exitosamente");
+            System.out.println("Ha sido creado exitosamente");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroExitoso.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Satisfactorio");
+            stage.show();
+            stage.setResizable(false);
+            colIdentificadorIngreso = facade.obtenerIdentificacionIngresosActivo();
+            buscarIdentificadorIngreso.getItems().clear();
+            for (IdentificacionIngresoDTO dto : colIdentificadorIngreso) {
+                buscarIdentificadorIngreso.getItems().addAll(dto.getIdentificador());
+            }
+        } else {
+            System.out.println("No ha podido ser creado");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroFallido.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("ERROR");
+            stage.show();
+            stage.setResizable(false);
         }
     }
-    
+
     @FXML
     private void modificarIdentificadorIngreso() throws Exception {
-        Stage stage = (Stage) buscarIdentificadorIngreso.getScene().getWindow();
-        stage.close();
+        int modificar = facade.modificarIdentificadoresIngresosActivo(id_facade, input_identificador_IdentificadorIngreso.getText(), area_descripcion_IdentificadorIngreso.getText());
+        if (modificar == 1) {
+            System.out.println("Ha sido modificado exitosamente");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroExitoso.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Satisfactorio");
+            stage.show();
+            stage.setResizable(false);
+            colIdentificadorIngreso = facade.obtenerIdentificacionIngresosActivo();
+            label_crear_IdentificadorIngreso.setVisible(false);
+            input_identificador_IdentificadorIngreso.setText("");
+            area_descripcion_IdentificadorIngreso.setText("");
+            label_descripcion_IdentificadorIngreso.setVisible(false);
+            label_identificador_IdentificadorIngreso.setVisible(false);
+            input_identificador_IdentificadorIngreso.setVisible(false);
+            input_identificador_IdentificadorIngreso.setDisable(false);
+            area_descripcion_IdentificadorIngreso.setVisible(false);
+            area_descripcion_IdentificadorIngreso.setDisable(false);
+            button_crear_IdentificadorIngreso.setVisible(false);
+            button_eliminar_IdentificadorIngreso.setVisible(false);
+            button_modificar_IdentificadorIngreso.setVisible(false);
+            buscarIdentificadorIngreso.setVisible(true);
+            buscarIdentificadorIngreso.getSelectionModel().clearSelection();
+            buscarIdentificadorIngreso.setValue(null);
+        } else {
+            input_identificador_IdentificadorIngreso.setText("");
+            area_descripcion_IdentificadorIngreso.setText("");
+            System.out.println("No ha podido ser modificado");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroFallido.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("ERROR");
+            stage.show();
+            stage.setResizable(false);
+        }
     }
-    
+
     @FXML
     private void eliminarIdentificadorIngreso() throws Exception {
-        Stage stage = (Stage) buscarIdentificadorIngreso.getScene().getWindow();
-        stage.close();
+        int eliminar = facade.eliminarIdentificadoresIngresosActivo(id_facade);
+        if (eliminar == 1) {
+            System.out.println("Ha sido eliminado exitosamente");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroExitoso.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Satisfactorio");
+            stage.show();
+            stage.setResizable(false);
+            colIdentificadorIngreso = facade.obtenerIdentificacionIngresosActivo();
+            buscarIdentificadorIngreso.getItems().clear();
+            for (IdentificacionIngresoDTO dto : colIdentificadorIngreso) {
+                buscarIdentificadorIngreso.getItems().addAll(dto.getIdentificador());
+            }
+            label_crear_IdentificadorIngreso.setVisible(false);
+            input_identificador_IdentificadorIngreso.setText("");
+            area_descripcion_IdentificadorIngreso.setText("");
+            label_descripcion_IdentificadorIngreso.setVisible(false);
+            label_identificador_IdentificadorIngreso.setVisible(false);
+            input_identificador_IdentificadorIngreso.setVisible(false);
+            input_identificador_IdentificadorIngreso.setDisable(false);
+            area_descripcion_IdentificadorIngreso.setVisible(false);
+            area_descripcion_IdentificadorIngreso.setDisable(false);
+            button_crear_IdentificadorIngreso.setVisible(false);
+            button_eliminar_IdentificadorIngreso.setVisible(false);
+            button_modificar_IdentificadorIngreso.setVisible(false);
+            buscarIdentificadorIngreso.setVisible(true);
+            buscarIdentificadorIngreso.getSelectionModel().clearSelection();
+            buscarIdentificadorIngreso.setValue(null);
+        } else {
+            input_identificador_IdentificadorIngreso.setText("");
+            area_descripcion_IdentificadorIngreso.setText("");
+            System.out.println("No ha podido ser eliminado");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroFallido.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("ERROR");
+            stage.show();
+            stage.setResizable(false);
+        }
     }
-    
+
+    @FXML
+    private void crearIdentificadorEgreso() throws Exception {
+        int crear = facade.insertarIdentificadoresEgresosActivo(input_identificador_IdentificadorEgreso.getText(), area_descripcion_IdentificadorEgreso.getText());
+        if (crear == 1) {
+            input_identificador_IdentificadorEgreso.setText("");
+            area_descripcion_IdentificadorEgreso.setText("");
+            System.out.println("Ha sido creado exitosamente");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroExitoso.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Satisfactorio");
+            stage.show();
+            stage.setResizable(false);
+            colIdentificadorEgreso = facade.obtenerIdentificacionEgresosActivo();
+            buscarIdentificadorEgreso.getItems().clear();
+            for (IdentificacionEgresoDTO dto : colIdentificadorEgreso) {
+                buscarIdentificadorEgreso.getItems().addAll(dto.getIdentificador());
+            }
+        } else {
+            System.out.println("No ha podido ser creado");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroFallido.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("ERROR");
+            stage.show();
+            stage.setResizable(false);
+        }
+    }
+
+    @FXML
+    private void modificarIdentificadorEgreso() throws Exception {
+        int modificar = facade.modificarIdentificadoresEgresosActivo(id_facade, input_identificador_IdentificadorEgreso.getText(), area_descripcion_IdentificadorEgreso.getText());
+        if (modificar == 1) {
+            System.out.println("Ha sido modificado exitosamente");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroExitoso.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Satisfactorio");
+            stage.show();
+            stage.setResizable(false);
+            colIdentificadorEgreso = facade.obtenerIdentificacionEgresosActivo();
+            label_crear_IdentificadorEgreso.setVisible(false);
+            input_identificador_IdentificadorEgreso.setText("");
+            area_descripcion_IdentificadorEgreso.setText("");
+            label_descripcion_IdentificadorEgreso.setVisible(false);
+            label_identificador_IdentificadorEgreso.setVisible(false);
+            input_identificador_IdentificadorEgreso.setVisible(false);
+            input_identificador_IdentificadorEgreso.setDisable(false);
+            area_descripcion_IdentificadorEgreso.setVisible(false);
+            area_descripcion_IdentificadorEgreso.setDisable(false);
+            button_crear_IdentificadorEgreso.setVisible(false);
+            button_eliminar_IdentificadorEgreso.setVisible(false);
+            button_modificar_IdentificadorEgreso.setVisible(false);
+            buscarIdentificadorEgreso.setVisible(true);
+            buscarIdentificadorEgreso.getSelectionModel().clearSelection();
+            buscarIdentificadorEgreso.setValue(null);
+        } else {
+            input_identificador_IdentificadorEgreso.setText("");
+            area_descripcion_IdentificadorEgreso.setText("");
+            System.out.println("No ha podido ser modificado");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroFallido.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("ERROR");
+            stage.show();
+            stage.setResizable(false);
+        }
+    }
+
+    @FXML
+    private void eliminarIdentificadorEgreso() throws Exception {
+        int eliminar = facade.eliminarIdentificadoresEgresosActivo(id_facade);
+        if (eliminar == 1) {
+            System.out.println("Ha sido eliminado exitosamente");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroExitoso.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Satisfactorio");
+            stage.show();
+            stage.setResizable(false);
+            colIdentificadorEgreso = facade.obtenerIdentificacionEgresosActivo();
+            buscarIdentificadorEgreso.getItems().clear();
+            for (IdentificacionEgresoDTO dto : colIdentificadorEgreso) {
+                buscarIdentificadorEgreso.getItems().addAll(dto.getIdentificador());
+            }
+            label_crear_IdentificadorEgreso.setVisible(false);
+            input_identificador_IdentificadorEgreso.setText("");
+            area_descripcion_IdentificadorEgreso.setText("");
+            label_descripcion_IdentificadorEgreso.setVisible(false);
+            label_identificador_IdentificadorEgreso.setVisible(false);
+            input_identificador_IdentificadorEgreso.setVisible(false);
+            input_identificador_IdentificadorEgreso.setDisable(false);
+            area_descripcion_IdentificadorEgreso.setVisible(false);
+            area_descripcion_IdentificadorEgreso.setDisable(false);
+            button_crear_IdentificadorEgreso.setVisible(false);
+            button_eliminar_IdentificadorEgreso.setVisible(false);
+            button_modificar_IdentificadorEgreso.setVisible(false);
+            buscarIdentificadorEgreso.setVisible(true);
+            buscarIdentificadorEgreso.getSelectionModel().clearSelection();
+            buscarIdentificadorEgreso.setValue(null);
+        } else {
+            input_identificador_IdentificadorEgreso.setText("");
+            area_descripcion_IdentificadorEgreso.setText("");
+            System.out.println("No ha podido ser eliminado");
+            Parent root = FXMLLoader.load(getClass().getResource("/vistas/RegistroFallido.fxml"));
+            Stage stage = new Stage();
+            Scene scene;
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("ERROR");
+            stage.show();
+            stage.setResizable(false);
+        }
+    }
+
     @FXML
     private void acercaDe(ActionEvent event) throws IOException {
         System.out.println("Abriendo otra ventana con el Acerca...!");

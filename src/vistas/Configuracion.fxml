@@ -46,14 +46,14 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <Button fx:id="button_crear_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Crear" visible="false" onAction="#crearIdentificadorIngreso"/>
+                                                <Button fx:id="button_crear_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" onAction="#crearIdentificadorIngreso" text="Crear" visible="false" />
                                                 <Label fx:id="label_crear_IdentificadorIngreso" layoutX="47.0" layoutY="24.0" text="Crear identificador de ingresos" visible="false">
                                                     <font>
                                                         <Font name="Arial" size="24.0" />
                                                     </font>
                                                 </Label>
-                                                <Button fx:id="button_modificar_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Modificar" visible="false" onAction="#modificarIdentificadorIngreso"/>
-                                                <Button fx:id="button_eliminar_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Eliminar" visible="false" onAction="#eliminarIdentificadorIngreso"/>
+                                                <Button fx:id="button_modificar_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" onAction="#modificarIdentificadorIngreso" text="Modificar" visible="false" />
+                                                <Button fx:id="button_eliminar_IdentificadorIngreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" onAction="#eliminarIdentificadorIngreso" text="Eliminar" visible="false" />
                                             </children>
                                         </AnchorPane>
                                     </items>
@@ -102,14 +102,14 @@
                                                         <Font size="18.0" />
                                                     </font>
                                                 </Label>
-                                                <Button fx:id="button_crear_IdentificadorEgreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Crear" visible="false" />
+                                                <Button fx:id="button_crear_IdentificadorEgreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Crear" onAction="#crearIdentificadorEgreso" visible="false" />
                                                 <Label fx:id="label_crear_IdentificadorEgreso" layoutX="47.0" layoutY="24.0" text="Crear identificador de egresos" visible="false">
                                                     <font>
                                                         <Font name="Arial" size="24.0" />
                                                     </font>
                                                 </Label>
-                                                <Button fx:id="button_modificar_IdentificadorEgreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Modificar" visible="false" />
-                                                <Button fx:id="button_eliminar_IdentificadorEgreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" text="Eliminar" visible="false" />
+                                                <Button fx:id="button_modificar_IdentificadorEgreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" onAction="#modificarIdentificadorEgreso" text="Modificar" visible="false" />
+                                                <Button fx:id="button_eliminar_IdentificadorEgreso" layoutX="42.0" layoutY="262.0" mnemonicParsing="false" onAction="#eliminarIdentificadorEgreso" text="Eliminar" visible="false" />
                                             </children>
                                         </AnchorPane>
                                     </items>

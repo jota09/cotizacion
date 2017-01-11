@@ -117,8 +117,8 @@ public class InicioController implements Initializable {
     }
 
     @FXML
-    private void borrado(ActionEvent event) throws IOException {
-        System.out.println("Limpiando la ventana de inicio...!");
+    private void actualizar(ActionEvent event) throws IOException {
+        System.out.println("Actualizando la ventana de inicio...!");
         idenIngreso.getSelectionModel().clearSelection();
         idenIngreso.setValue(null);
         idenEgreso.getSelectionModel().clearSelection();
@@ -128,7 +128,87 @@ public class InicioController implements Initializable {
         panel3.setExpanded(false);
         labelIden.setText("");
         labelDes.setText("");
-
+        colIngreso = facade.obtenerIngresosActivo();
+        colEgreso = facade.obtenerEgresosActivo();
+        colIdentificadorIngreso = facade.obtenerIdentificacionIngresosActivo();
+        colIdentificadorEgreso = facade.obtenerIdentificacionEgresosActivo();
+        totalIngreso=0;
+        totalEgreso=0;
+        for (IngresoDTO dto : colIngreso) {
+            totalIngreso += dto.getValor();
+        }
+        for (EgresoDTO dto : colEgreso) {
+            totalEgreso += dto.getValor();
+        }
+        if (totalIngreso > 0) {
+            TtotalIngreso.setText(formateador.format(totalIngreso) + "$");
+        } else {
+            TtotalIngreso.setText("0$");
+        }
+        if (totalEgreso > 0) {
+            TtotalEgreso.setText(formateador.format(totalEgreso) + "$");
+        } else {
+            TtotalEgreso.setText("0$");
+        }
+        if ((totalIngreso - totalEgreso) >= 0) {
+            Ttotal.setText(formateador.format(totalIngreso - totalEgreso) + "$");
+        } else {
+            Ttotal.setText("-" + formateador.format(totalIngreso - totalEgreso) + "$");
+        }
+        if (colIngreso.size() > 0) {
+            IngresoDTO dto = colIngreso.get(0);
+            TmayorIngreso.setText(dto.toString());
+        } else {
+            TmayorIngreso.setText("Sin Ingreso");
+        }
+        if (colEgreso.size() > 0) {
+            EgresoDTO dto = colEgreso.get(0);
+            TmayorEgreso.setText(dto.toString());
+        } else {
+            TmayorEgreso.setText("Sin Egreso");
+        }
+        idenIngreso.getItems().clear();
+        idenEgreso.getItems().clear();
+        for (IdentificacionIngresoDTO dto : colIdentificadorIngreso) {
+            idenIngreso.getItems().addAll(dto.getIdentificador());
+        }
+        for (IdentificacionEgresoDTO dto : colIdentificadorEgreso) {
+            idenEgreso.getItems().addAll(dto.getIdentificador());
+        }
+        idenIngreso.setEditable(true);
+        idenIngreso.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                for (IdentificacionIngresoDTO dto : colIdentificadorIngreso) {
+                    if (dto.getIdentificador().equals(t1)) {
+                        String id = "" + dto.getId() + "";
+                        labelIden.setText(dto.getIdentificador());
+                        labelIden.setAlignment(Pos.CENTER);
+                        labelDes.setText(dto.getDescripcion());
+                        labelDes.setAlignment(Pos.CENTER);
+                        idenEgreso.getSelectionModel().clearSelection();
+                        idenEgreso.setValue(null);
+                    }
+                }
+            }
+        });
+        idenEgreso.setEditable(true);
+        idenEgreso.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                for (IdentificacionEgresoDTO dto : colIdentificadorEgreso) {
+                    if (dto.getIdentificador().equals(t1)) {
+                        String id = "" + dto.getId() + "";
+                        labelIden.setText(dto.getIdentificador());
+                        labelIden.setAlignment(Pos.CENTER);
+                        labelDes.setText(dto.getDescripcion());
+                        labelDes.setAlignment(Pos.CENTER);
+                        idenIngreso.getSelectionModel().clearSelection();
+                        idenIngreso.setValue(null);
+                    }
+                }
+            }
+        });
     }
 
     @FXML

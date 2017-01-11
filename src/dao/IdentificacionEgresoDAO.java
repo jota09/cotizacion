@@ -58,4 +58,77 @@ public class IdentificacionEgresoDAO {
         return null;
 
     }
+    
+    public int insertarIdentificadoresEgresosActivo(String identificador, String descripcion) {
+        Connection con;
+        PreparedStatement ps = null;
+        con = Conectar.getConnection();
+        String sql = "INSERT INTO cotizacion.identificador_egreso "
+                + "(id , identificador, descripcion, activo, eliminado) "
+                + "VALUES ( NULL ,  ? ,  ?,  1,  0)";
+        try {
+            // seteamos los valores de los parametros
+            ps = con.prepareStatement(sql);
+        ps.setString(1, identificador);
+        ps.setString(2, descripcion);
+        int rtdo = ps.executeUpdate();
+        if (rtdo == 1) {
+            return 1;
+        } else {
+            throw new RuntimeException("No se pudo insertar la fila");
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(IdentificacionEgresoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public int modificarIdentificadoresEgresosActivo(int id, String identificador, String descripcion) {
+        Connection con;
+        PreparedStatement ps = null;
+        con = Conectar.getConnection();
+        String sql = "UPDATE cotizacion.identificador_egreso "
+                + "SET  identificador =  ?, descripcion =  ? "
+                + "WHERE identificador_egreso.id =?";
+        try {
+            // seteamos los valores de los parametros
+            ps = con.prepareStatement(sql);
+        ps.setString(1, identificador);
+        ps.setString(2, descripcion);
+        ps.setInt(3, id);
+        int rtdo = ps.executeUpdate();
+        if (rtdo == 1) {
+            return 1;
+        } else {
+            throw new RuntimeException("No se pudo hacer update en la fila");
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(IdentificacionEgresoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public int eliminarIdentificadoresEgresosActivo(int id) {
+        Connection con;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        con = Conectar.getConnection();
+        String sql = "UPDATE cotizacion.identificador_egreso "
+                + "SET  eliminado = 1 "
+                + "WHERE identificador_egreso.id =?";
+        try {
+            // seteamos los valores de los parametros
+            ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        int rtdo = ps.executeUpdate();
+        if (rtdo == 1) {
+            return 1;
+        } else {
+            throw new RuntimeException("No se pudo hacer update en la fila");
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(IdentificacionEgresoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 }
