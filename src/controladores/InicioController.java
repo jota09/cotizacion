@@ -115,6 +115,7 @@ public class InicioController implements Initializable {
         stage.show();
         stage.setResizable(false);
     }
+    
     @FXML
     private void configuracionIngreso(ActionEvent event) throws IOException {
         System.out.println("Abriendo otra ventana con las configuraciones de ingreso...!");
@@ -127,6 +128,7 @@ public class InicioController implements Initializable {
         stage.show();
         stage.setResizable(false);
     }
+    
     @FXML
     private void configuracionEgreso(ActionEvent event) throws IOException {
         System.out.println("Abriendo otra ventana con las configuraciones de egreso...!");
