@@ -30,14 +30,19 @@ public class Conectar {
                 String usr = rb.getString("user");
                 Class.forName(driver);
                 System.out.println("Se ha levantado los drivers satisfactoriamente");
-                con = DriverManager.getConnection(url, usr, pwd);
+                try {
+                    con = DriverManager.getConnection(url, usr, pwd);
+
+                } catch (SQLException ex) {
+                    System.out.println("Error al crear la conexion, posiblemente no se ha iniciado el servidor de MySql");
+                    return con;
+                }
                 System.out.println("Se ha establecido la conexion  satisfactoriamente");
-            }
-            else {
+            } else {
                 System.out.println("Ya existe una conexion a la base de datos");
             }
             return con;
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (ClassNotFoundException ex) {
             throw new RuntimeException("Error al crear la conexion", ex);
         }
     }
