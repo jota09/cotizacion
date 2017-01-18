@@ -15,11 +15,11 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <SplitPane dividerPositions="0.29797979797979796" layoutY="-1.0" prefHeight="331.0" prefWidth="608.0">
+                                <SplitPane dividerPositions="0.22772277227722773" layoutY="-1.0" prefHeight="331.0" prefWidth="608.0">
                                     <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                             <children>
-                                                <MenuButton layoutX="27.0" layoutY="48.0" mnemonicParsing="false" text="Accion">
+                                                <MenuButton layoutX="14.0" layoutY="55.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="106.0" text="Accion">
                                                     <items>
                                                         <MenuItem mnemonicParsing="false" onAction="#formularioCrearIdentificadorIngreso" text="Crear" />
                                                         <MenuItem mnemonicParsing="false" onAction="#formularioModificarIdentificadorIngreso" text="Modificar" />
@@ -70,7 +70,7 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <MenuButton layoutX="14.0" layoutY="55.0" mnemonicParsing="false" text="Accion">
+                                    <MenuButton layoutX="14.0" layoutY="55.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="106.0" text="Accion">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -85,8 +85,8 @@
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <ComboBox fx:id="ingresoIdentificadorCombo" layoutX="255.0" layoutY="44.0" prefHeight="16.0" prefWidth="99.0" visible="false" />
-                                    <Label fx:id="ingresoIdentificadorLabel" layoutX="172.0" layoutY="44.0" text="Identificador:" visible="false" />
+                                    <ComboBox fx:id="ingresoIdentificadorCombo" layoutX="304.0" layoutY="34.0" prefHeight="16.0" prefWidth="121.0" visible="false" />
+                                    <Label fx:id="ingresoIdentificadorLabel" layoutX="211.0" layoutY="39.0" text="Identificador:" visible="false" />
                                     <Label fx:id="ingresoNombreLabel" layoutX="26.0" layoutY="77.0" text="Nombre:" visible="false" />
                                     <TextField fx:id="ingresoNombreText" layoutX="102.0" layoutY="72.0" prefHeight="31.0" prefWidth="140.0" visible="false" />
                                     <Label fx:id="ingresoValorLabel" layoutX="260.0" layoutY="77.0" text="Valor:" visible="false" />
@@ -98,7 +98,10 @@
                                     <DatePicker fx:id="ingresoFechaIniDate" editable="false" layoutX="106.0" layoutY="233.0" showWeekNumbers="true" visible="false" />
                                     <DatePicker fx:id="ingresoFechaFinDate" editable="false" layoutX="106.0" layoutY="269.0" visible="false" />
                                     <Button fx:id="ingresoCrear" layoutX="374.0" layoutY="254.0" mnemonicParsing="false" text="Crear" visible="false" />
-                                    <Label fx:id="ingresoHeadLabel" layoutX="50.0" layoutY="14.0" />
+                                    <Label fx:id="ingresoHeadLabel" layoutX="14.0" layoutY="26.0" prefHeight="21.0" prefWidth="199.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font></Label>
                                  </children>
                               </AnchorPane>
                           </items>

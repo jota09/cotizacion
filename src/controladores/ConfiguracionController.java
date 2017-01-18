@@ -187,6 +187,8 @@ public class ConfiguracionController implements Initializable {
         ingresoNombreText.setText("");
         ingresoValorText.setText("");
         ingresoDescripArea.setText("");
+        ingresoIdentificadorCombo.setValue(null);
+        ingresoIdentificadorCombo.setVisible(true);
         ingresoNombreText.setVisible(true);
         ingresoValorText.setVisible(true);
         ingresoDescripArea.setVisible(true);
@@ -201,6 +203,11 @@ public class ConfiguracionController implements Initializable {
         ingresoFechaIniLabel.setVisible(true);
         ingresoFechaFinLabel.setVisible(true);
         ingresoCrear.setVisible(true);
+        ingresoIdentificadorCombo.getItems().clear();
+        colIdentificadorIngreso = facade.obtenerIdentificacionIngresosActivo();
+            for (IdentificacionIngresoDTO dto : colIdentificadorIngreso) {
+                ingresoIdentificadorCombo.getItems().addAll(dto.getIdentificador());
+            }
         
     }
     @FXML
