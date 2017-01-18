@@ -103,6 +103,7 @@ public class ControladorLogin implements Initializable {
     private void inicio() throws IOException {
         System.out.println("Abriendo la ventana de inicio...!");
         Parent root = FXMLLoader.load(getClass().getResource("/vistas/Inicio.fxml"));
+        System.out.println("Entra aqui...!");
         Stage stage = new Stage();
         Scene scene;
         scene = new Scene(root);

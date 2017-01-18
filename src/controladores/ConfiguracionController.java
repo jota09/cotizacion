@@ -24,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -37,15 +38,17 @@ import javafx.stage.Stage;
 public class ConfiguracionController implements Initializable {
 
     @FXML
-    private Label label_crear_IdentificadorIngreso, label_identificador_IdentificadorIngreso, label_descripcion_IdentificadorIngreso;
+    private Label label_crear_IdentificadorIngreso, label_identificador_IdentificadorIngreso, label_descripcion_IdentificadorIngreso, ingresoIdentificadorLabel, ingresoNombreLabel, ingresoValorLabel, ingresoDescripLabel, ingresoFechaIniLabel, ingresoFechaFinLabel, ingresoHeadLabel;
     @FXML
-    private TextField input_identificador_IdentificadorIngreso;
+    private TextField input_identificador_IdentificadorIngreso, ingresoNombreText, ingresoValorText;
     @FXML
-    private TextArea area_descripcion_IdentificadorIngreso;
+    private TextArea area_descripcion_IdentificadorIngreso, ingresoDescripArea;
     @FXML
-    private Button button_crear_IdentificadorIngreso, button_modificar_IdentificadorIngreso, button_eliminar_IdentificadorIngreso;
+    private Button button_crear_IdentificadorIngreso, button_modificar_IdentificadorIngreso, button_eliminar_IdentificadorIngreso, ingresoCrear;
     @FXML
-    private ComboBox buscarIdentificadorIngreso;
+    private ComboBox buscarIdentificadorIngreso, ingresoIdentificadorCombo;
+    @FXML
+    private DatePicker ingresoFechaIniDate, ingresoFechaFinDate;
     @FXML
     private Label label_crear_IdentificadorEgreso, label_identificador_IdentificadorEgreso, label_descripcion_IdentificadorEgreso;
     @FXML
@@ -175,6 +178,70 @@ public class ConfiguracionController implements Initializable {
                 }
             }
         });
+    }
+
+    @FXML
+    private void formularioCrearIngreso(ActionEvent event) throws IOException {
+        System.out.println("Mostrar formulario para crear un ingresos...!");
+        ingresoHeadLabel.setText("Crear un ingreso");
+        ingresoNombreText.setText("");
+        ingresoValorText.setText("");
+        ingresoDescripArea.setText("");
+        ingresoNombreText.setVisible(true);
+        ingresoValorText.setVisible(true);
+        ingresoDescripArea.setVisible(true);
+        ingresoFechaIniDate.setValue(null);
+        ingresoFechaFinDate.setValue(null);
+        ingresoFechaIniDate.setVisible(true);
+        ingresoFechaFinDate.setVisible(true);
+        ingresoIdentificadorLabel.setVisible(true);
+        ingresoNombreLabel.setVisible(true);
+        ingresoValorLabel.setVisible(true);
+        ingresoDescripLabel.setVisible(true);
+        ingresoFechaIniLabel.setVisible(true);
+        ingresoFechaFinLabel.setVisible(true);
+        ingresoCrear.setVisible(true);
+        
+    }
+    @FXML
+    private void formularioModificarIngreso(ActionEvent event) throws IOException {
+        System.out.println("Mostrar formulario para crear un ingresos...!");
+        ingresoHeadLabel.setText("Crear un ingreso");
+        ingresoNombreText.setText("");
+        ingresoValorText.setText("");
+        ingresoDescripArea.setText("");
+        ingresoFechaIniDate.setValue(null);
+        ingresoFechaFinDate.setValue(null);
+        ingresoFechaIniDate.setVisible(true);
+        ingresoFechaFinDate.setVisible(true);
+        ingresoIdentificadorLabel.setVisible(true);
+        ingresoNombreLabel.setVisible(true);
+        ingresoValorLabel.setVisible(true);
+        ingresoDescripLabel.setVisible(true);
+        ingresoFechaIniLabel.setVisible(true);
+        ingresoFechaFinLabel.setVisible(true);
+        ingresoCrear.setVisible(true);
+        
+    }
+    @FXML
+    private void formularioEliminarIngreso(ActionEvent event) throws IOException {
+        System.out.println("Mostrar formulario para crear un ingresos...!");
+        ingresoHeadLabel.setText("Crear un ingreso");
+        ingresoNombreText.setText("");
+        ingresoValorText.setText("");
+        ingresoDescripArea.setText("");
+        ingresoFechaIniDate.setValue(null);
+        ingresoFechaFinDate.setValue(null);
+        ingresoFechaIniDate.setVisible(true);
+        ingresoFechaFinDate.setVisible(true);
+        ingresoIdentificadorLabel.setVisible(true);
+        ingresoNombreLabel.setVisible(true);
+        ingresoValorLabel.setVisible(true);
+        ingresoDescripLabel.setVisible(true);
+        ingresoFechaIniLabel.setVisible(true);
+        ingresoFechaFinLabel.setVisible(true);
+        ingresoCrear.setVisible(true);
+        
     }
 
     @FXML

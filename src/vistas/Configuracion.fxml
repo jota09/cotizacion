@@ -75,9 +75,9 @@
                                           <Font size="18.0" />
                                        </font>
                                        <items>
-                                          <MenuItem mnemonicParsing="false" onAction="#formularioCrearIdentificadorIngreso" text="Crear" />
-                                          <MenuItem mnemonicParsing="false" onAction="#formularioModificarIdentificadorIngreso" text="Modificar" />
-                                          <MenuItem mnemonicParsing="false" onAction="#formularioEliminarIdentificadorIngreso" text="Eliminar" />
+                                          <MenuItem mnemonicParsing="false" onAction="#formularioCrearIngreso" text="Crear" />
+                                          <MenuItem mnemonicParsing="false" onAction="#formularioModificarIngreso" text="Modificar" />
+                                          <MenuItem mnemonicParsing="false" onAction="#formularioEliminarIngreso" text="Eliminar" />
                                        </items>
                                     </MenuButton>
                                     <ComboBox fx:id="buscarIdentificadorIngreso1" editable="true" layoutX="7.0" layoutY="178.0" prefHeight="0.0" prefWidth="118.0" promptText="Identificador Ingreso" visible="false" />
@@ -85,19 +85,20 @@
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <ComboBox layoutX="249.0" layoutY="21.0" prefHeight="16.0" prefWidth="99.0" />
-                                    <Label layoutX="129.0" layoutY="26.0" text="Identificador:" />
-                                    <Label layoutX="26.0" layoutY="77.0" text="Nombre:" />
-                                    <TextField layoutX="102.0" layoutY="72.0" prefHeight="31.0" prefWidth="140.0" />
-                                    <Label layoutX="260.0" layoutY="77.0" text="Valor:" />
-                                    <TextField layoutX="304.0" layoutY="72.0" prefHeight="31.0" prefWidth="140.0" />
-                                    <Label layoutX="15.0" layoutY="130.0" text="Descripcion:" />
-                                    <TextArea layoutX="102.0" layoutY="130.0" prefHeight="96.0" prefWidth="245.0" wrapText="true" />
-                                    <Label layoutX="14.0" layoutY="238.0" text="Fecha Inicio:" />
-                                    <Label layoutX="22.0" layoutY="274.0" text="Fecha Fin:" />
-                                    <DatePicker editable="false" layoutX="106.0" layoutY="233.0" showWeekNumbers="true" />
-                                    <DatePicker editable="false" layoutX="106.0" layoutY="269.0" />
-                                    <Button layoutX="374.0" layoutY="254.0" mnemonicParsing="false" text="Crear" />
+                                    <ComboBox fx:id="ingresoIdentificadorCombo" layoutX="255.0" layoutY="44.0" prefHeight="16.0" prefWidth="99.0" visible="false" />
+                                    <Label fx:id="ingresoIdentificadorLabel" layoutX="172.0" layoutY="44.0" text="Identificador:" visible="false" />
+                                    <Label fx:id="ingresoNombreLabel" layoutX="26.0" layoutY="77.0" text="Nombre:" visible="false" />
+                                    <TextField fx:id="ingresoNombreText" layoutX="102.0" layoutY="72.0" prefHeight="31.0" prefWidth="140.0" visible="false" />
+                                    <Label fx:id="ingresoValorLabel" layoutX="260.0" layoutY="77.0" text="Valor:" visible="false" />
+                                    <TextField fx:id="ingresoValorText" layoutX="304.0" layoutY="72.0" prefHeight="31.0" prefWidth="140.0" visible="false" />
+                                    <Label fx:id="ingresoDescripLabel" layoutX="15.0" layoutY="130.0" text="Descripcion:" visible="false" />
+                                    <TextArea fx:id="ingresoDescripArea" layoutX="102.0" layoutY="130.0" prefHeight="96.0" prefWidth="245.0" visible="false" wrapText="true" />
+                                    <Label fx:id="ingresoFechaIniLabel" layoutX="14.0" layoutY="238.0" text="Fecha Inicio:" visible="false" />
+                                    <Label fx:id="ingresoFechaFinLabel" layoutX="22.0" layoutY="274.0" text="Fecha Fin:" visible="false" />
+                                    <DatePicker fx:id="ingresoFechaIniDate" editable="false" layoutX="106.0" layoutY="233.0" showWeekNumbers="true" visible="false" />
+                                    <DatePicker fx:id="ingresoFechaFinDate" editable="false" layoutX="106.0" layoutY="269.0" visible="false" />
+                                    <Button fx:id="ingresoCrear" layoutX="374.0" layoutY="254.0" mnemonicParsing="false" text="Crear" visible="false" />
+                                    <Label fx:id="ingresoHeadLabel" layoutX="50.0" layoutY="14.0" />
                                  </children>
                               </AnchorPane>
                           </items>
