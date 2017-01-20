@@ -69,7 +69,7 @@ public class IngresoDTO {
         return valor;
     }
     
-    public String detDescripcion(){
+    public String getDescripcion(){
         return descripcion;
     }
     
