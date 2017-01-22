@@ -9,10 +9,12 @@ import dao.EgresoDAO;
 import dao.IdentificacionEgresoDAO;
 import dao.IdentificacionIngresoDAO;
 import dao.IngresoDAO;
+import dao.UsuarioDAO;
 import dto.IngresoDTO;
 import dto.EgresoDTO;
 import dto.IdentificacionEgresoDTO;
 import dto.IdentificacionIngresoDTO;
+import dto.UsuarioDTO;
 import java.util.ArrayList;
 
 /**
@@ -21,6 +23,11 @@ import java.util.ArrayList;
  */
 public class Facade {
 
+    public ArrayList<UsuarioDTO> obtenerUsuarios() {
+        UsuarioDAO usuarioActivos = new UsuarioDAO();
+        return usuarioActivos.obtenerUsuariosActivos();
+    }
+    
     public ArrayList<IngresoDTO> obtenerIngresosActivo() {
         IngresoDAO ingresoActivos = new IngresoDAO();
         return ingresoActivos.obtenerIngresosActivo();

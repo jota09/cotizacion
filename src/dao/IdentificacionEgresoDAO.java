@@ -6,7 +6,9 @@
 package dao;
 
 import conexionBD.Conectar;
+import conexionBD.ConectarConfig;
 import dto.IdentificacionEgresoDTO;
+import dto.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,15 +22,19 @@ import java.util.logging.Logger;
  * @author Jesus
  */
 public class IdentificacionEgresoDAO {
+
+    private UsuarioDTO u = ConectarConfig.usuarioLogueado();
+
     public ArrayList<IdentificacionEgresoDTO> obtenerIdentificadoresEgresosActivo() {
         Connection con;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         con = Conectar.getConnection();
-        String sql = "SELECT ie.id, ie.identificador, ie.descripcion, ie.activo, ie.eliminado "
+        String sql = "SELECT ie.id, ie.identificador, ie.descripcion, ie.activo, ie.eliminado, ie.usuario_id "
                 + "FROM identificador_egreso AS ie "
                 + "WHERE ie.activo = 1 AND ie.eliminado = 0 "
+                + "AND usuario_id='" + u.getId() + "' "
                 + "ORDER BY ie.id DESC";
         try {
             ps = con.prepareStatement(sql);
@@ -37,7 +43,7 @@ public class IdentificacionEgresoDAO {
             IdentificacionEgresoDTO identificacionEgreso = null;
 
             while (rs.next()) {
-                identificacionEgreso = new IdentificacionEgresoDTO(rs.getInt("id"), rs.getString("identificador"), rs.getString("descripcion"), rs.getBoolean("activo"), rs.getBoolean("eliminado"));
+                identificacionEgreso = new IdentificacionEgresoDTO(rs.getInt("id"), rs.getString("identificador"), rs.getString("descripcion"), rs.getBoolean("activo"), rs.getBoolean("eliminado"), rs.getInt("usuario_id"));
                 identificacionEgresos.add(identificacionEgreso);
             }
             return identificacionEgresos;
@@ -58,25 +64,26 @@ public class IdentificacionEgresoDAO {
         return null;
 
     }
-    
+
     public int insertarIdentificadoresEgresosActivo(String identificador, String descripcion) {
         Connection con;
         PreparedStatement ps = null;
         con = Conectar.getConnection();
         String sql = "INSERT INTO cotizacion.identificador_egreso "
-                + "(id , identificador, descripcion, activo, eliminado) "
-                + "VALUES ( NULL ,  ? ,  ?,  1,  0)";
+                + "(id , identificador, descripcion, activo, eliminado, usuario_id) "
+                + "VALUES ( NULL ,  ? ,  ?,  1,  0, ?)";
         try {
             // seteamos los valores de los parametros
             ps = con.prepareStatement(sql);
-        ps.setString(1, identificador);
-        ps.setString(2, descripcion);
-        int rtdo = ps.executeUpdate();
-        if (rtdo == 1) {
-            return 1;
-        } else {
-            throw new RuntimeException("No se pudo insertar la fila");
-        }
+            ps.setString(1, identificador);
+            ps.setString(2, descripcion);
+            ps.setInt(3, u.getId());
+            int rtdo = ps.executeUpdate();
+            if (rtdo == 1) {
+                return 1;
+            } else {
+                throw new RuntimeException("No se pudo insertar la fila");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(IdentificacionEgresoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -89,19 +96,20 @@ public class IdentificacionEgresoDAO {
         con = Conectar.getConnection();
         String sql = "UPDATE cotizacion.identificador_egreso "
                 + "SET  identificador =  ?, descripcion =  ? "
-                + "WHERE identificador_egreso.id =?";
+                + "WHERE identificador_egreso.id =? "
+                + "AND usuario_id='" + u.getId() + "'";
         try {
             // seteamos los valores de los parametros
             ps = con.prepareStatement(sql);
-        ps.setString(1, identificador);
-        ps.setString(2, descripcion);
-        ps.setInt(3, id);
-        int rtdo = ps.executeUpdate();
-        if (rtdo == 1) {
-            return 1;
-        } else {
-            throw new RuntimeException("No se pudo hacer update en la fila");
-        }
+            ps.setString(1, identificador);
+            ps.setString(2, descripcion);
+            ps.setInt(3, id);
+            int rtdo = ps.executeUpdate();
+            if (rtdo == 1) {
+                return 1;
+            } else {
+                throw new RuntimeException("No se pudo hacer update en la fila");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(IdentificacionEgresoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -115,17 +123,18 @@ public class IdentificacionEgresoDAO {
         con = Conectar.getConnection();
         String sql = "UPDATE cotizacion.identificador_egreso "
                 + "SET  eliminado = 1 "
-                + "WHERE identificador_egreso.id =?";
+                + "WHERE identificador_egreso.id =? "
+                + "AND usuario_id='" + u.getId() + "'";
         try {
             // seteamos los valores de los parametros
             ps = con.prepareStatement(sql);
-        ps.setInt(1, id);
-        int rtdo = ps.executeUpdate();
-        if (rtdo == 1) {
-            return 1;
-        } else {
-            throw new RuntimeException("No se pudo hacer update en la fila");
-        }
+            ps.setInt(1, id);
+            int rtdo = ps.executeUpdate();
+            if (rtdo == 1) {
+                return 1;
+            } else {
+                throw new RuntimeException("No se pudo hacer update en la fila");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(IdentificacionEgresoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -7,11 +7,11 @@ package controladores;
 
 import conexionBD.Conectar;
 import conexionBD.ConectarConfig;
-import cotizacion.Usuario;
 import dto.EgresoDTO;
 import dto.IdentificacionEgresoDTO;
 import dto.IdentificacionIngresoDTO;
 import dto.IngresoDTO;
+import dto.UsuarioDTO;
 import facade.Facade;
 import java.io.IOException;
 import java.net.URL;
@@ -44,7 +44,7 @@ public class InicioController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    private Usuario u = ConectarConfig.usuarioLogueado();
+    private UsuarioDTO u = ConectarConfig.usuarioLogueado();
     @FXML
     private Label nombreUsuario;
     @FXML
@@ -246,7 +246,7 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        nombreUsuario.setText(u.getName());
+        nombreUsuario.setText(u.getNombre());
         con = Conectar.getConnection();
         for (IngresoDTO dto : colIngreso) {
             totalIngreso += dto.getValor();

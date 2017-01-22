@@ -6,7 +6,7 @@
 package controladores;
 
 import conexionBD.ConectarConfig;
-import cotizacion.Usuario;
+import dto.UsuarioDTO;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,20 +38,19 @@ public class ControladorLogin implements Initializable {
     @FXML
     private TextField user;
     @FXML
-    private Usuario u = null;
+    private UsuarioDTO u = null;
     @FXML
     private Label validaUser;
     @FXML
     private Label validaPass;
     @FXML
     private Button buttonLogin;
-    
+
     @FXML
     private void ingresarSistema(ActionEvent event) {
         System.out.println("Logueando!");
         progres1.setVisible(true);
         u = ConectarConfig.login(user.getText(), pass.getText());
-    
         if (u.getValidoUser() && u.getValidoPass()) {
             System.out.println("Logueo Satisfactorio!!");
             validaUser.setVisible(false);
@@ -69,17 +68,20 @@ public class ControladorLogin implements Initializable {
                 Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            if (!u.getValidoUser()) {
-                System.out.println("El usuario no coincide");
-                validaUser.setVisible(true);
-                progres1.setVisible(false);
-            } else {
-                validaUser.setVisible(false);
-            }
             if (!u.getValidoPass()) {
                 System.out.println("El password no coincide");
                 validaPass.setVisible(true);
                 progres1.setVisible(false);
+                pass.setText("");
+                if (!u.getValidoUser()) {
+                    System.out.println("El usuario no se encuentra");
+                    user.setText("");
+                    validaUser.setVisible(true);
+                    validaPass.setVisible(false);
+                    progres1.setVisible(false);
+                } else {
+                    validaUser.setVisible(false);
+                }
             } else {
                 validaPass.setVisible(false);
             }
@@ -98,7 +100,7 @@ public class ControladorLogin implements Initializable {
         stage.show();
         stage.setResizable(false);
     }
-    
+
     @FXML
     private void inicio() throws IOException {
         System.out.println("Abriendo la ventana de inicio...!");

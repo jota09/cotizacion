@@ -15,6 +15,7 @@ public class IdentificacionEgresoDTO {
     private String descripcion;
     private boolean activo;
     private boolean eliminado;
+    private int usuario_id;
     
     public IdentificacionEgresoDTO(){
         id = 0;
@@ -22,14 +23,16 @@ public class IdentificacionEgresoDTO {
         descripcion = null;
         activo = true;
         eliminado = false;
+        usuario_id = 0;
     }
     
-    public IdentificacionEgresoDTO(int id, String identificador, String descipcion, boolean activo, boolean eliminado){
+    public IdentificacionEgresoDTO(int id, String identificador, String descipcion, boolean activo, boolean eliminado, int usuario_id){
         this.id = id;
         this.identificador = identificador;
         this.descripcion = descipcion;
         this.activo = activo;
         this.eliminado = eliminado;
+        this.usuario_id = usuario_id;
     }
      
     @Override
@@ -57,6 +60,10 @@ public class IdentificacionEgresoDTO {
         return eliminado;
     }
     
+    public int getUsuarioId(){
+        return usuario_id;
+    }
+    
     public void setId(int id){
         this.id = id;
     }
@@ -75,5 +82,9 @@ public class IdentificacionEgresoDTO {
     
     public void setEliminado(boolean eliminado){
         this.eliminado = eliminado;
+    }
+    
+    public void setUsuarioId(int usuario_id){
+        this.usuario_id = usuario_id;
     }
 }

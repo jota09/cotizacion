@@ -5,8 +5,9 @@
  */
 package conexionBD;
 
-import cotizacion.Usuario;
-import java.util.ResourceBundle;
+import dto.UsuarioDTO;
+import facade.Facade;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,48 +16,38 @@ import java.util.ResourceBundle;
 public class ConectarConfig {
 
     // definimos la variable de retorno
-    private static final Usuario u = new Usuario();
+    private static final Facade facade = new Facade();
+    private static final ArrayList<UsuarioDTO> usuarios = facade.obtenerUsuarios();
+    private static UsuarioDTO u = new UsuarioDTO();
 
-    public static Usuario login(String usrname, String password) {
+    public static UsuarioDTO login(String usrname, String password) {
 
         try {
-// leemos el archivo de propiedades que debe estar ubicado
-// en el package configuracion
-            ResourceBundle rb = ResourceBundle.getBundle("configuracion.config");
-// leemos el valor de la propiedad usrname
-            String usr = rb.getString("user");
-//// leemos el valor de la propiedad password
-            String pwd = rb.getString("pass");
-//// si coinciden los datos proporcionados con los leidos
-            if(!usr.equals(usrname)){
-                u.setValidoUser(false);
+            for (UsuarioDTO dto : usuarios) {
+                System.out.println(dto.getUser() + " igual a " + usrname + "\n" + dto.getPass() + " igual a " + password);
+                if (dto.getUser().equals(usrname)) {
+                    if (dto.getPass().equals(password)) {
+                        u = dto;
+                        u.setValidoUser(true);
+                        u.setValidoPass(true);
+                        return u;
+                    } else {
+                        u.setValidoPass(false);
+                    }
+
+                } else {
+                    u.setValidoUser(false);
+                }
             }
-            if(!pwd.equals(password)){
-                u.setValidoPass(false);
-            }
-            if(usr.equals(usrname)){
-                u.setValidoUser(true);
-            }
-            if(pwd.equals(password)){
-                u.setValidoPass(true);
-            }
-            if (usr.equals(usrname)&& pwd.equals(password)) {
-//// instancio y seteo todos los datos
-                u.setUser(usr);
-                u.setPass(pwd);
-                u.setValidoUser(true);
-                u.setValidoPass(true);
-                u.setName(rb.getString("name"));
-            }
-// retorno la instancia o null si no entro al if
-            return u;
+
         } catch (Exception ex) {
 // cualquier error "salgo por excepcion"
             throw new RuntimeException("Error verificando datos", ex);
         }
+        return u;
     }
-    
-    public static Usuario usuarioLogueado(){
+
+    public static UsuarioDTO usuarioLogueado() {
         return u;
     }
 

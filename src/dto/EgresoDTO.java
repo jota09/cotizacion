@@ -23,6 +23,7 @@ public class EgresoDTO {
     private Date fecha_fin;
     private boolean activo;
     private boolean eliminado;
+    private int usuario_id; 
     DecimalFormat formateador = new DecimalFormat("###,###.##");
 
     public EgresoDTO() {
@@ -34,9 +35,10 @@ public class EgresoDTO {
         this.fecha_fin = null;
         this.activo = false;
         this.eliminado = true;
+        this.usuario_id = 0;
     }
 
-    public EgresoDTO(int id, String identificador, String nombre, int valor, String descripcion, Date fecha_inicio, Date fecha_fin, boolean activo, boolean eliminado) {
+    public EgresoDTO(int id, String identificador, String nombre, int valor, String descripcion, Date fecha_inicio, Date fecha_fin, boolean activo, boolean eliminado, int usuario_id) {
         this.id = id;
         this.identificador = identificador;
         this.nombre = nombre;
@@ -46,6 +48,7 @@ public class EgresoDTO {
         this.fecha_fin = fecha_fin;
         this.activo = activo;
         this.eliminado = eliminado;
+        this.usuario_id = usuario_id;
     }
     
     @Override
@@ -88,6 +91,10 @@ public class EgresoDTO {
     public boolean getEliminado() {
         return eliminado;
     }
+    
+    public int getUsuarioId(){
+        return usuario_id;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -123,5 +130,9 @@ public class EgresoDTO {
 
     public void setEliminado(boolean eliminado) {
         this.eliminado = eliminado;
+    }
+    
+    public void setUsuarioId(int usuario_id){
+        this.usuario_id = usuario_id;
     }
 }
