@@ -12,7 +12,11 @@ import dto.IngresoDTO;
 import facade.Facade;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -46,7 +50,7 @@ public class ConfiguracionController implements Initializable {
     @FXML
     private Button button_crear_IdentificadorIngreso, button_modificar_IdentificadorIngreso, button_eliminar_IdentificadorIngreso, ingresoCrear;
     @FXML
-    private ComboBox buscarIdentificadorIngreso, ingresoIdentificadorCombo;
+    private ComboBox buscarIdentificadorIngreso, ingresoIdentificadorCombo, buscarIngreso;
     @FXML
     private DatePicker ingresoFechaIniDate, ingresoFechaFinDate;
     @FXML
@@ -71,6 +75,8 @@ public class ConfiguracionController implements Initializable {
     private ArrayList<IdentificacionEgresoDTO> colIdentificadorEgreso = facade.obtenerIdentificacionEgresosActivo();
     @FXML
     private int id_facade;
+    @FXML
+    private String formatoBase = "yyyy-MM-dd", formatoFX = "dd/MM/yyyy";
 
     /**
      * Initializes the controller class.
@@ -184,6 +190,9 @@ public class ConfiguracionController implements Initializable {
     private void formularioCrearIngreso(ActionEvent event) throws IOException {
         System.out.println("Mostrar formulario para crear un ingresos...!");
         ingresoHeadLabel.setText("Crear un ingreso");
+        buscarIngreso.setVisible(false);
+        buscarIngreso.getSelectionModel().clearSelection();
+        buscarIngreso.setValue(null);
         ingresoNombreText.setText("");
         ingresoValorText.setText("");
         ingresoDescripArea.setText("");
@@ -203,33 +212,83 @@ public class ConfiguracionController implements Initializable {
         ingresoFechaIniLabel.setVisible(true);
         ingresoFechaFinLabel.setVisible(true);
         ingresoCrear.setVisible(true);
-        ingresoIdentificadorCombo.getItems().clear();
-        colIdentificadorIngreso = facade.obtenerIdentificacionIngresosActivo();
-            for (IdentificacionIngresoDTO dto : colIdentificadorIngreso) {
-                ingresoIdentificadorCombo.getItems().addAll(dto.getIdentificador());
-            }
-        
+
     }
+
     @FXML
     private void formularioModificarIngreso(ActionEvent event) throws IOException {
         System.out.println("Mostrar formulario para crear un ingresos...!");
-        ingresoHeadLabel.setText("Crear un ingreso");
+        ingresoHeadLabel.setText("");
         ingresoNombreText.setText("");
         ingresoValorText.setText("");
         ingresoDescripArea.setText("");
+        ingresoIdentificadorCombo.setValue(null);
+        ingresoIdentificadorCombo.setVisible(false);
+        ingresoNombreText.setVisible(false);
+        ingresoValorText.setVisible(false);
+        ingresoDescripArea.setVisible(false);
         ingresoFechaIniDate.setValue(null);
         ingresoFechaFinDate.setValue(null);
-        ingresoFechaIniDate.setVisible(true);
-        ingresoFechaFinDate.setVisible(true);
-        ingresoIdentificadorLabel.setVisible(true);
-        ingresoNombreLabel.setVisible(true);
-        ingresoValorLabel.setVisible(true);
-        ingresoDescripLabel.setVisible(true);
-        ingresoFechaIniLabel.setVisible(true);
-        ingresoFechaFinLabel.setVisible(true);
-        ingresoCrear.setVisible(true);
-        
+        ingresoFechaIniDate.setVisible(false);
+        ingresoFechaFinDate.setVisible(false);
+        ingresoIdentificadorLabel.setVisible(false);
+        ingresoNombreLabel.setVisible(false);
+        ingresoValorLabel.setVisible(false);
+        ingresoDescripLabel.setVisible(false);
+        ingresoFechaIniLabel.setVisible(false);
+        ingresoFechaFinLabel.setVisible(false);
+        ingresoCrear.setVisible(false);
+        ingresoIdentificadorCombo.getItems().clear();
+        colIngreso = facade.obtenerIngresosActivo();
+        buscarIngreso.setVisible(true);
+        buscarIngreso.getSelectionModel().clearSelection();
+        buscarIngreso.setValue(null);
+        ingresoIdentificadorCombo.getSelectionModel().clearSelection();
+        ingresoIdentificadorCombo.setValue(null);
+        buscarIngreso.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                for (IngresoDTO dto : colIngreso) {
+                    ingresoIdentificadorCombo.getItems().addAll(dto.getIdentificador());
+                    if (dto.getNombre().equals(t1)) {
+                        ingresoHeadLabel.setText("Modificar un ingreso");
+                        ingresoNombreText.setText(dto.getNombre());
+                        ingresoValorText.setText("" + dto.getValor() + "");
+                        ingresoDescripArea.setText(dto.getDescripcion());
+                        ingresoIdentificadorCombo.setValue(dto.getIdentificador());
+                        ingresoIdentificadorCombo.setValue(null);
+                        ingresoIdentificadorCombo.setVisible(true);
+                        ingresoNombreText.setVisible(true);
+                        ingresoValorText.setVisible(true);
+                        ingresoDescripArea.setVisible(true);
+                        String nuevoFormatoInicio = new SimpleDateFormat(formatoFX).format(dto.getFechaInicio());
+                        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        LocalDate nuevaFechaInicio = LocalDate.parse(nuevoFormatoInicio, formato);
+                        ingresoFechaIniDate.setValue(nuevaFechaInicio);
+                        if (dto.getFechaFin() != null) {
+                            String nuevoFormatoFin = new SimpleDateFormat(formatoFX).format(dto.getFechaFin());
+                            LocalDate nuevaFechaFin = LocalDate.parse(nuevoFormatoFin, formato);
+                            ingresoFechaFinDate.setValue(nuevaFechaFin);
+                        } else {
+                            ingresoFechaFinDate.setValue(null);
+                        }
+                        ingresoFechaIniDate.setVisible(true);
+                        ingresoFechaFinDate.setVisible(true);
+                        ingresoIdentificadorLabel.setVisible(true);
+                        ingresoNombreLabel.setVisible(true);
+                        ingresoValorLabel.setVisible(true);
+                        ingresoDescripLabel.setVisible(true);
+                        ingresoFechaIniLabel.setVisible(true);
+                        ingresoFechaFinLabel.setVisible(true);
+                        ingresoCrear.setVisible(true);
+
+                    }
+                }
+            }
+        });
+
     }
+
     @FXML
     private void formularioEliminarIngreso(ActionEvent event) throws IOException {
         System.out.println("Mostrar formulario para crear un ingresos...!");
@@ -248,7 +307,7 @@ public class ConfiguracionController implements Initializable {
         ingresoFechaIniLabel.setVisible(true);
         ingresoFechaFinLabel.setVisible(true);
         ingresoCrear.setVisible(true);
-        
+
     }
 
     @FXML
@@ -631,10 +690,18 @@ public class ConfiguracionController implements Initializable {
             buscarIdentificadorIngreso.getItems().addAll(dto.getIdentificador());
         }
         buscarIdentificadorIngreso.setEditable(true);
+        for (IngresoDTO dto : colIngreso) {
+            buscarIngreso.getItems().addAll(dto.getNombre());
+        }
+        buscarIngreso.setEditable(true);
         for (IdentificacionEgresoDTO dto : colIdentificadorEgreso) {
             buscarIdentificadorEgreso.getItems().addAll(dto.getIdentificador());
         }
         buscarIdentificadorEgreso.setEditable(true);
+        for (IdentificacionIngresoDTO dto2 : colIdentificadorIngreso) {
+            ingresoIdentificadorCombo.getItems().addAll(dto2.getIdentificador());
+        }
+        ingresoIdentificadorCombo.setEditable(true);
     }
 
 }
