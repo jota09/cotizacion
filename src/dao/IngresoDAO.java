@@ -7,6 +7,7 @@ package dao;
 
 import conexionBD.Conectar;
 import conexionBD.ConectarConfig;
+import dto.IdentificacionIngresoDTO;
 import dto.IngresoDTO;
 import dto.UsuarioDTO;
 import java.sql.Connection;
@@ -30,7 +31,7 @@ public class IngresoDAO {
         ResultSet rs = null;
 
         con = Conectar.getConnection();
-        String sql = "SELECT i.id, ii.identificador, i.nombre, i.valor, i.descripcion, i.fecha_inicio, i.fecha_fin, i.activo, i.eliminado, i.usuario_id "
+        String sql = "SELECT i.id, ii. id AS idIden ,ii.identificador, i.nombre, i.valor, i.descripcion, i.fecha_inicio, i.fecha_fin, i.activo, i.eliminado, i.usuario_id "
                 + "FROM ingreso AS i "
                 + "JOIN identificador_ingreso AS ii ON i.identificador = ii.id "
                 + "WHERE i.activo = 1 AND i.eliminado = 0 AND ii.activo = 1 AND ii.eliminado = 0 "
@@ -43,7 +44,7 @@ public class IngresoDAO {
             IngresoDTO ingreso = null;
 
             while (rs.next()) {
-                ingreso = new IngresoDTO(rs.getInt("id"), rs.getString("identificador"), rs.getString("nombre"), rs.getInt("valor"), rs.getString("descripcion"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"), rs.getBoolean("activo"), rs.getBoolean("eliminado"), rs.getInt("usuario_id"));
+                ingreso = new IngresoDTO(rs.getInt("id"), new IdentificacionIngresoDTO(rs.getInt("idIden"), rs.getString("identificador")), rs.getString("nombre"), rs.getInt("valor"), rs.getString("descripcion"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"), rs.getBoolean("activo"), rs.getBoolean("eliminado"), u);
                 ingresos.add(ingreso);
             }
             return ingresos;

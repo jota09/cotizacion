@@ -15,7 +15,7 @@ import java.text.DecimalFormat;
 public class IngresoDTO {
 
     private int id;
-    private String identificador;
+    private IdentificacionIngresoDTO identificador;
     private String nombre;
     private int valor;
     private String descripcion;
@@ -23,7 +23,7 @@ public class IngresoDTO {
     private Date fecha_fin;
     private boolean activo;
     private boolean eliminado;
-    private int usuario_id;
+    private UsuarioDTO usuario;
     DecimalFormat formateador = new DecimalFormat("###,###.##");
 
     public IngresoDTO() {
@@ -36,10 +36,10 @@ public class IngresoDTO {
         fecha_fin = null;
         activo = false;
         eliminado = true;
-        usuario_id = 0;
+        usuario = null;
     }
 
-    public IngresoDTO(int id, String identificador, String nombre, int valor, String descipcion, Date fecha_inicio, Date fecha_fin, boolean activo, boolean eliminado, int usuario_id) {
+    public IngresoDTO(int id, IdentificacionIngresoDTO identificador, String nombre, int valor, String descipcion, Date fecha_inicio, Date fecha_fin, boolean activo, boolean eliminado, UsuarioDTO usuario) {
         this.id = id;
         this.identificador = identificador;
         this.nombre = nombre;
@@ -49,19 +49,19 @@ public class IngresoDTO {
         this.fecha_fin = fecha_fin;
         this.activo = activo;
         this.eliminado = eliminado;
-        this.usuario_id = usuario_id;
+        this.usuario = usuario;
     }
 
     @Override
     public String toString() {
-        return nombre + "(" + identificador + ") " + formateador.format(valor) + "$";
+        return "IngresoDTO{" + "id=" + id + ", identificador=" + identificador + ", nombre=" + nombre + ", valor=" + valor + ", descripcion=" + descripcion + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", activo=" + activo + ", eliminado=" + eliminado + ", usuario=" + usuario + ", formateador=" + formateador + '}';
     }
 
     public int getId() {
         return id;
     }
 
-    public String getIdentificador() {
+    public IdentificacionIngresoDTO getIdentificador() {
         return identificador;
     }
 
@@ -93,15 +93,15 @@ public class IngresoDTO {
         return eliminado;
     }
 
-    public int getUsuarioId() {
-        return usuario_id;
+    public UsuarioDTO getUsuarioId() {
+        return usuario;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setIdentificador(String identificador) {
+    public void setIdentificador(IdentificacionIngresoDTO identificador) {
         this.identificador = identificador;
     }
 
@@ -133,8 +133,8 @@ public class IngresoDTO {
         this.eliminado = eliminado;
     }
     
-    public void setUsuarioId(int usuario_id){
-        this.usuario_id = usuario_id;
+    public void setUsuarioId(UsuarioDTO usuario){
+        this.usuario = usuario;
     }
 
 }

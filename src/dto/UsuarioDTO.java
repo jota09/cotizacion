@@ -39,9 +39,14 @@ public class UsuarioDTO {
     this.activo = activo;
     this.eliminado = eliminado;
     }
-    
-    public String toString(){
-        return "Usuario: "+user+", Contraseña: "+pass+", Nombre: "+nombre+", Valido Usuario: "+validoUser+", Valido Password: "+validoPass;
+
+    public UsuarioDTO(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" + "id=" + id + ", user=" + user + ", nombre=" + nombre + ", pass=" + pass + ", meta=" + meta + ", activo=" + activo + ", eliminado=" + eliminado + ", validoUser=" + validoUser + ", validoPass=" + validoPass + '}';
     }
     
     public int getId(){

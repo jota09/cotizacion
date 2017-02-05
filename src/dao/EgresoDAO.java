@@ -8,6 +8,7 @@ package dao;
 import conexionBD.Conectar;
 import conexionBD.ConectarConfig;
 import dto.EgresoDTO;
+import dto.IdentificacionEgresoDTO;
 import dto.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +31,7 @@ public class EgresoDAO {
         ResultSet rs = null;
 
         con = Conectar.getConnection();
-        String sql = "SELECT e.id, ie.identificador, e.nombre, e.valor, e.descripcion, e.fecha_inicio, e.fecha_fin, e.activo, e.eliminado, e.usuario_id "
+        String sql = "SELECT e.id, ie.id AS idIden, ie.identificador, e.nombre, e.valor, e.descripcion, e.fecha_inicio, e.fecha_fin, e.activo, e.eliminado, e.usuario_id "
                 + "FROM egreso AS e "
                 + "JOIN identificador_egreso AS ie ON e.identificador = ie.id "
                 + "WHERE e.activo = 1 AND e.eliminado = 0 AND ie.activo = 1 AND ie.eliminado = 0 "
@@ -43,7 +44,7 @@ public class EgresoDAO {
             EgresoDTO egreso = null;
 
             while (rs.next()) {
-                egreso = new EgresoDTO(rs.getInt("id"), rs.getString("identificador"), rs.getString("nombre"), rs.getInt("valor"), rs.getString("descripcion"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"), rs.getBoolean("activo"), rs.getBoolean("eliminado"), rs.getInt("usuario_id"));
+                egreso = new EgresoDTO(rs.getInt("id"), new IdentificacionEgresoDTO(rs.getInt("idIden"),rs.getString("identificador")), rs.getString("nombre"), rs.getInt("valor"), rs.getString("descripcion"), rs.getDate("fecha_inicio"), rs.getDate("fecha_fin"), rs.getBoolean("activo"), rs.getBoolean("eliminado"), u);
                 egresos.add(egreso);
             }
             return egresos;

@@ -43,7 +43,7 @@ public class IdentificacionEgresoDAO {
             IdentificacionEgresoDTO identificacionEgreso = null;
 
             while (rs.next()) {
-                identificacionEgreso = new IdentificacionEgresoDTO(rs.getInt("id"), rs.getString("identificador"), rs.getString("descripcion"), rs.getBoolean("activo"), rs.getBoolean("eliminado"), rs.getInt("usuario_id"));
+                identificacionEgreso = new IdentificacionEgresoDTO(rs.getInt("id"), rs.getString("identificador"), rs.getString("descripcion"), rs.getBoolean("activo"), rs.getBoolean("eliminado"), u);
                 identificacionEgresos.add(identificacionEgreso);
             }
             return identificacionEgresos;

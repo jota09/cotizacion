@@ -15,7 +15,7 @@ public class IdentificacionIngresoDTO {
     private String descripcion;
     private boolean activo;
     private boolean eliminado;
-    private int usuario_id;
+    private UsuarioDTO usuario;
     
     public IdentificacionIngresoDTO(){
         id = 0;
@@ -23,23 +23,28 @@ public class IdentificacionIngresoDTO {
         descripcion = null;
         activo = true;
         eliminado = false; 
-        usuario_id = 0;
+        usuario = null;
+    }
+
+    public IdentificacionIngresoDTO(int id, String identificador) {
+        this.id = id;
+        this.identificador = identificador;
     }
     
-    public IdentificacionIngresoDTO(int id, String identificador, String descipcion, boolean activo, boolean eliminado, int usuario_id){
+    public IdentificacionIngresoDTO(int id, String identificador, String descipcion, boolean activo, boolean eliminado, UsuarioDTO usuario){
         this.id = id;
         this.identificador = identificador;
         this.descripcion = descipcion;
         this.activo = activo;
         this.eliminado = eliminado;
-        this.usuario_id = usuario_id;
+        this.usuario = usuario;
+    }
+
+    @Override
+    public String toString() {
+        return "IdentificacionIngresoDTO{" + "id=" + id + ", identificador=" + identificador + ", descripcion=" + descripcion + ", activo=" + activo + ", eliminado=" + eliminado + ", usuario=" + usuario + '}';
     }
      
-    @Override
-    public String toString(){
-        return identificador+" "+descripcion;
-    }
-    
     public int getId(){
         return id;
     }
@@ -60,8 +65,8 @@ public class IdentificacionIngresoDTO {
         return eliminado;
     }
     
-    public int getUsuarioId(){
-        return usuario_id;
+    public UsuarioDTO getUsuarioId(){
+        return usuario;
     }
     
     public void setId(int id){
@@ -84,7 +89,7 @@ public class IdentificacionIngresoDTO {
         this.eliminado = eliminado;
     }
     
-    public void setUsuarioId(int usuario_id){
-        this.usuario_id = usuario_id;
+    public void setUsuarioId(UsuarioDTO usuario){
+        this.usuario = usuario;
     }
 }

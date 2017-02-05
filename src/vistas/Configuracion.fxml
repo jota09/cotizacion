@@ -95,7 +95,7 @@
                                     <TextArea fx:id="ingresoDescripArea" layoutX="102.0" layoutY="130.0" prefHeight="96.0" prefWidth="245.0" visible="false" wrapText="true" />
                                     <Label fx:id="ingresoFechaIniLabel" layoutX="14.0" layoutY="238.0" text="Fecha Inicio:" visible="false" />
                                     <Label fx:id="ingresoFechaFinLabel" layoutX="22.0" layoutY="274.0" text="Fecha Fin:" visible="false" />
-                                    <DatePicker fx:id="ingresoFechaIniDate" editable="false" layoutX="106.0" layoutY="233.0" showWeekNumbers="true" visible="false" />
+                                    <DatePicker fx:id="ingresoFechaIniDate" editable="false" layoutX="106.0" layoutY="233.0" visible="false" />
                                     <DatePicker fx:id="ingresoFechaFinDate" editable="false" layoutX="106.0" layoutY="269.0" visible="false" />
                                     <Button fx:id="ingresoCrear" layoutX="374.0" layoutY="254.0" mnemonicParsing="false" text="Crear" visible="false" />
                                     <Label fx:id="ingresoHeadLabel" layoutX="14.0" layoutY="26.0" prefHeight="21.0" prefWidth="199.0">

@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -255,9 +254,23 @@ public class ConfiguracionController implements Initializable {
                         ingresoNombreText.setText(dto.getNombre());
                         ingresoValorText.setText("" + dto.getValor() + "");
                         ingresoDescripArea.setText(dto.getDescripcion());
-                        ingresoIdentificadorCombo.setValue(dto.getIdentificador());
+                        ingresoIdentificadorCombo.setValue(dto.getIdentificador().getIdentificador());
                         ingresoIdentificadorCombo.setValue(null);
                         ingresoIdentificadorCombo.setVisible(true);
+
+                        ingresoIdentificadorCombo.getSelectionModel().clearSelection();
+                        ingresoIdentificadorCombo.setValue(null);
+                        ingresoIdentificadorCombo.valueProperty().addListener(new ChangeListener<String>() {
+                            @Override
+                            public void changed(ObservableValue ov, String t, String t1) {
+                                for (IdentificacionIngresoDTO dto2 : colIdentificadorIngreso) {
+                                    if (dto2.getIdentificador().equals(dto.getIdentificador().getIdentificador())) {
+                                   ingresoIdentificadorCombo.setValue(dto.getIdentificador().getIdentificador());  
+}
+                                }
+                            }
+                        });
+
                         ingresoNombreText.setVisible(true);
                         ingresoValorText.setVisible(true);
                         ingresoDescripArea.setVisible(true);
